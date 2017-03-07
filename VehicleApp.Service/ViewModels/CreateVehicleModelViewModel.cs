@@ -14,7 +14,7 @@ namespace VehicleApp.Service.ViewModels
         public int VehicleMakeId { get; set; }
         [Required]
         [Display(Name = "Model")]
-        public string Model { get; set; }
+        public string Name { get; set; }
         public string Abrv { get; set; }
     }
 }

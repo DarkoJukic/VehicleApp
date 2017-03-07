@@ -9,9 +9,12 @@ namespace VehicleApp.MVC.App_Start
         {
             AutoMapper.Mapper.Initialize(config =>
             {
+                // VehicleMake
                 config.CreateMap<VehicleMake, ListVehicleMakeViewModel>();
                 config.CreateMap<CreateVehicleMakeViewModel, VehicleMake>();
                 config.CreateMap<VehicleMake, CreateVehicleMakeViewModel>();
+                // VehicleModel
+                config.CreateMap<VehicleModel, ListVehicleModelViewModel>();
             });
         }
     }

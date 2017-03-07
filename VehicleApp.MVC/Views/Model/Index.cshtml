@@ -1,17 +1,19 @@
-﻿@model IEnumerable<VehicleApp.Service.ViewModels.ListVehicleMakeViewModel>
+﻿@model IEnumerable<VehicleApp.Service.ViewModels.ListVehicleModelViewModel>
 
 @{
-    ViewBag.Title = "Makes";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>List of vehicle makes</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -24,14 +26,17 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.HiddenFor(modelItem => item.VehicleMakeId)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Abrv)
         </td>
         <td>
-            @Html.ActionLink("Models", "Index", "Model", new { MakeId = item.Id }, null) |
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

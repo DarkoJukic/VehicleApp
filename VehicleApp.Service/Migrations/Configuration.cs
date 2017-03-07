@@ -23,7 +23,7 @@ namespace VehicleApp.Service.Migrations
                     Name = "Renault",
                     Models = new List<VehicleModel>
                   {
-                        new VehicleModel { Model = "Clio"}
+                        new VehicleModel { Name = "Clio"}
                   }
                 },
                 new VehicleMake
@@ -32,8 +32,8 @@ namespace VehicleApp.Service.Migrations
                     Abrv = "VW",
                     Models = new List<VehicleModel>
                     {
-                          new VehicleModel { Model = "Golf" },
-                          new VehicleModel { Model = "Passat" }
+                          new VehicleModel { Name = "Golf" },
+                          new VehicleModel { Name = "Passat" }
                     }
                 });
         }

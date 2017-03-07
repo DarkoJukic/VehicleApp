@@ -4,10 +4,11 @@ namespace VehicleApp.Service.ViewModels
 {
     public class ListVehicleModelViewModel
     {
+        [Display( )]
         public int Id { get; set; }
         public int VehicleMakeId { get; set; }
         [Display(Name = "Model")]
-        public string Model { get; set; }
+        public string Name { get; set; }
         public string Abrv { get; set; }
     }
 }
