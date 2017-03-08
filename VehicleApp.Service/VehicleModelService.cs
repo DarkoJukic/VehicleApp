@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,29 +22,46 @@ namespace VehicleApp.Service
                 return model;
             }
         }
-        public void Create(VehicleModel vehicleMake)
+        public void Create(VehicleModel vehicleModel)
         {
-            throw new NotImplementedException();
-        }
-
-        public VehicleModel Delete(int? Id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteConfirmed(int? Id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Edit(VehicleModel vehicleModel)
-        {
-            throw new NotImplementedException();
+            using (var context = new VehicleDbContext())
+            {
+                context.Models.Add(vehicleModel);
+                context.SaveChanges();
+            }
         }
 
         public VehicleModel Edit(int? Id)
         {
-            throw new NotImplementedException();
+            using (var context = new VehicleDbContext())
+            {
+                var model = context.Models.Find(Id);
+                return model;
+            }
+        }
+        public void Edit(VehicleModel vehicleMake)
+        {
+            using (var context = new VehicleDbContext())
+            {
+                context.Entry(vehicleMake).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+        }
+        public VehicleModel Delete(int? Id)
+        {
+            using (var context = new VehicleDbContext())
+            {
+                return context.Models.Find(Id);
+            }
+        }
+        public void DeleteConfirmed(int? Id)
+        {
+            using (var context = new VehicleDbContext())
+            {
+                VehicleModel model = context.Models.Find(Id);
+                context.Models.Remove(model);
+                context.SaveChanges();
+            }
         }
     }
 }

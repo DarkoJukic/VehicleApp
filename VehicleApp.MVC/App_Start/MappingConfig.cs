@@ -15,6 +15,8 @@ namespace VehicleApp.MVC.App_Start
                 config.CreateMap<VehicleMake, CreateVehicleMakeViewModel>();
                 // VehicleModel
                 config.CreateMap<VehicleModel, ListVehicleModelViewModel>();
+                config.CreateMap<CreateVehicleModelViewModel, VehicleModel>();
+                config.CreateMap<VehicleModel, CreateVehicleModelViewModel>();
             });
         }
     }

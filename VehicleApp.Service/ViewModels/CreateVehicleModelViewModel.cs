@@ -15,6 +15,7 @@ namespace VehicleApp.Service.ViewModels
         [Required]
         [Display(Name = "Model")]
         public string Name { get; set; }
+        [Display(Name = "Abbreviation")]
         public string Abrv { get; set; }
     }
 }

@@ -61,14 +61,13 @@ namespace VehicleApp.MVC.Controllers
         [HttpPost]
         public ActionResult Edit(CreateVehicleMakeViewModel viewModel)
         {
-            var model = AutoMapper.Mapper.Map<CreateVehicleMakeViewModel, VehicleMake>(viewModel);
-
             if (!ModelState.IsValid)
             {
                 return View(viewModel);
             }
             else
             {
+                var model = AutoMapper.Mapper.Map<CreateVehicleMakeViewModel, VehicleMake>(viewModel);
                 VehicleMakeService vehicleService = new VehicleMakeService();
                 vehicleService.Edit(model);
                 return RedirectToAction("Index");
