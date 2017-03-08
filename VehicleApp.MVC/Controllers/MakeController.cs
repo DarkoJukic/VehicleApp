@@ -2,6 +2,7 @@
 using System.Net;
 using System.Web.Mvc;
 using VehicleApp.Service;
+using VehicleApp.Service.Interfaces;
 using VehicleApp.Service.Models;
 using VehicleApp.Service.ViewModels;
 
@@ -9,10 +10,17 @@ namespace VehicleApp.MVC.Controllers
 {
     public class MakeController : Controller
     {
+
+        private readonly IVehicleMakeService service;
+
+        public MakeController(IVehicleMakeService service)
+        {
+            this.service = service;
+        }
+
         [HttpGet]
         public ActionResult Index()
         {
-            VehicleMakeService service = new VehicleMakeService();
             List<VehicleMake> model = service.Get();
             IEnumerable<ListVehicleMakeViewModel> viewModel = AutoMapper.Mapper.Map<List<VehicleMake>, IEnumerable<ListVehicleMakeViewModel>>(model);
             return View(viewModel);
@@ -34,8 +42,7 @@ namespace VehicleApp.MVC.Controllers
             else
             {
                 VehicleMake model = AutoMapper.Mapper.Map<CreateVehicleMakeViewModel, VehicleMake>(viewModel);
-                VehicleMakeService vehicleService = new VehicleMakeService();
-                vehicleService.Create(model);
+                service.Create(model);
                 return RedirectToAction("Index");
             }
         }
@@ -48,7 +55,6 @@ namespace VehicleApp.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VehicleMakeService service = new VehicleMakeService();
             var model = service.Edit(Id);
             var viewModel = AutoMapper.Mapper.Map<VehicleMake, CreateVehicleMakeViewModel>(model);
             if (viewModel == null)
@@ -68,8 +74,7 @@ namespace VehicleApp.MVC.Controllers
             else
             {
                 var model = AutoMapper.Mapper.Map<CreateVehicleMakeViewModel, VehicleMake>(viewModel);
-                VehicleMakeService vehicleService = new VehicleMakeService();
-                vehicleService.Edit(model);
+                service.Edit(model);
                 return RedirectToAction("Index");
             }
         }

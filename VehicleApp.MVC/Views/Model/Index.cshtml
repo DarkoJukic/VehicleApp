@@ -8,7 +8,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New Model", "Create", new { MakeId = Request.QueryString["MakeId"]})
+    @Html.ActionLink("Create New Model", "Create", new { Id = Request.Path.Last()  })
 </p>
 <table class="table">
     <tr>

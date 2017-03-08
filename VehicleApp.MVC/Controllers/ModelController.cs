@@ -5,6 +5,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using VehicleApp.Service;
+using VehicleApp.Service.Interfaces;
 using VehicleApp.Service.Models;
 using VehicleApp.Service.ViewModels;
 
@@ -12,19 +13,25 @@ namespace VehicleApp.MVC.Controllers
 {
     public class ModelController : Controller
     {
-        // GET: Model
-        public ActionResult Index(int MakeId)
+        private readonly IVehicleModelService service;
+
+        public ModelController(IVehicleModelService service)
         {
-            VehicleModelService service = new VehicleModelService();
-            IEnumerable<VehicleModel> model = service.Get(MakeId);
+            this.service = service;
+        }
+
+        // GET: Model
+        public ActionResult Index(int Id)
+        {
+            IEnumerable<VehicleModel> model = service.Get(Id);
             IEnumerable<ListVehicleModelViewModel> viewModel = AutoMapper.Mapper.Map<IEnumerable<VehicleModel>, IEnumerable< ListVehicleModelViewModel>>(model);
             return View(viewModel);
         }
         [HttpGet]
-        public ActionResult Create(int MakeId)
+        public ActionResult Create(int Id)
         {
             CreateVehicleModelViewModel model = new CreateVehicleModelViewModel();
-            model.VehicleMakeId = MakeId;
+            model.VehicleMakeId = Id;
             return View(model);
         }
 
@@ -38,9 +45,8 @@ namespace VehicleApp.MVC.Controllers
             else
             {
                 VehicleModel model = AutoMapper.Mapper.Map<CreateVehicleModelViewModel, VehicleModel>(viewModel);
-                VehicleModelService vehicleService = new VehicleModelService();
-                vehicleService.Create(model);
-                return RedirectToAction("Index", new { MakeId = model.VehicleMakeId});
+                service.Create(model);
+                return RedirectToAction("Index", new { Id = model.VehicleMakeId});
             }
         }
         [HttpGet]
@@ -50,7 +56,6 @@ namespace VehicleApp.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VehicleModelService service = new VehicleModelService();
             var model = service.Edit(Id);
             var viewModel = AutoMapper.Mapper.Map<VehicleModel, CreateVehicleModelViewModel>(model);
             if (viewModel == null)
@@ -71,9 +76,8 @@ namespace VehicleApp.MVC.Controllers
             else
             {
                 var model = AutoMapper.Mapper.Map<CreateVehicleModelViewModel, VehicleModel>(viewModel);
-                VehicleModelService service = new VehicleModelService();
                 service.Edit(model);
-                return RedirectToAction("Index", new { MakeId = model.VehicleMakeId });
+                return RedirectToAction("Index", new { Id = model.VehicleMakeId });
             }
         }
         public ActionResult Delete(int? Id)
@@ -82,7 +86,6 @@ namespace VehicleApp.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VehicleModelService service = new VehicleModelService();
             var model = service.Delete(Id);
             if (model == null)
             {
@@ -94,7 +97,6 @@ namespace VehicleApp.MVC.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int Id)
         {
-            VehicleModelService service = new VehicleModelService();
             service.DeleteConfirmed(Id);
             return RedirectToAction("Index", "Make");
         }
