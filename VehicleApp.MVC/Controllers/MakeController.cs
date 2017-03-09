@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using System.Web.Mvc;
-using VehicleApp.Service;
 using VehicleApp.Service.Interfaces;
 using VehicleApp.Service.Models;
 using VehicleApp.Service.ViewModels;
@@ -10,7 +9,6 @@ namespace VehicleApp.MVC.Controllers
 {
     public class MakeController : Controller
     {
-
         private readonly IVehicleMakeService service;
 
         public MakeController(IVehicleMakeService service)
@@ -85,7 +83,6 @@ namespace VehicleApp.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VehicleMakeService service = new VehicleMakeService();
             var model = service.Delete(Id);
             if (model == null)
             {
@@ -97,7 +94,6 @@ namespace VehicleApp.MVC.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int Id)
         {
-            VehicleMakeService service = new VehicleMakeService();
             service.DeleteConfirmed(Id);
             return RedirectToAction("Index");
         }

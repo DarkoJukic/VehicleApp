@@ -3,6 +3,7 @@ using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using VehicleApp.Service.Interfaces;
 using VehicleApp.Service;
+using VehicleApp.Service.Models;
 
 namespace VehicleApp.MVC.App_Start
 {
@@ -41,6 +42,7 @@ namespace VehicleApp.MVC.App_Start
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IVehicleMakeService, VehicleMakeService>();
             container.RegisterType<IVehicleModelService, VehicleModelService>();
+            container.RegisterType<VehicleDbContext, VehicleDbContext>();
         }
     }
 }

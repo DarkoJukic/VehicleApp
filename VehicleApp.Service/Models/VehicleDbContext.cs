@@ -2,7 +2,7 @@
 
 namespace VehicleApp.Service.Models
 {
-    class VehicleDbContext : DbContext
+    public class VehicleDbContext : DbContext
     {
         public VehicleDbContext() : base("name = VehicleDbContext") { }
         public DbSet<VehicleMake> Makes { get; set; }
