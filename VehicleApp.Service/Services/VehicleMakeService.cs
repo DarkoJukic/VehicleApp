@@ -13,10 +13,10 @@ namespace VehicleApp.Service
         {
             this.context = context;
         }
-        public List<VehicleMake> Get()
+        public List<VehicleMake> Get(string searchTerm)
         {
             // Need to implement paging and filtering in future
-            var model = context.Makes
+            var model = context.Makes.Where(vehicle => searchTerm == null || vehicle.Name.StartsWith(searchTerm))
                 .OrderBy(vehicle => vehicle.Name)
                 .Take(10).ToList();
             return model;

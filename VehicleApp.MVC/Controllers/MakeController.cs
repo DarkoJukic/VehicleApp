@@ -17,9 +17,9 @@ namespace VehicleApp.MVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm = null)
         {
-            List<VehicleMake> model = service.Get();
+            List<VehicleMake> model = service.Get(searchTerm);
             IEnumerable<ListVehicleMakeViewModel> viewModel = AutoMapper.Mapper.Map<List<VehicleMake>, IEnumerable<ListVehicleMakeViewModel>>(model);
             return View(viewModel);
         }
