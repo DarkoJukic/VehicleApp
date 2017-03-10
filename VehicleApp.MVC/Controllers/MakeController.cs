@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using PagedList;
+using System.Collections.Generic;
 using System.Net;
 using System.Web.Mvc;
 using VehicleApp.Service.Interfaces;
@@ -17,11 +18,13 @@ namespace VehicleApp.MVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index(string searchTerm = null)
+        public ActionResult Index(int? page, string searchTerm = null)
         {
-            List<VehicleMake> model = service.Get(searchTerm);
+            List<VehicleMake> model = service.Get(page, searchTerm);
             IEnumerable<ListVehicleMakeViewModel> viewModel = AutoMapper.Mapper.Map<List<VehicleMake>, IEnumerable<ListVehicleMakeViewModel>>(model);
-            return View(viewModel);
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(viewModel.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]

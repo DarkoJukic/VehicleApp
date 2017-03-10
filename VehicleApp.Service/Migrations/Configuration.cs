@@ -36,6 +36,13 @@ namespace VehicleApp.Service.Migrations
                           new VehicleModel { Name = "Passat" }
                     }
                 });
+
+               // for (int i = 0; i < 50; i++)
+               // {
+               //     context.Makes.AddOrUpdate(r => r.Name,
+               //         new VehicleMake { Name = "Make" + i.ToString() }
+               //);
+            //}
         }
     }
 }

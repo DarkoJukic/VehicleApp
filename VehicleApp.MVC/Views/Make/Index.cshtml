@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VehicleApp.Service.ViewModels.ListVehicleMakeViewModel>
+﻿@model IPagedList<VehicleApp.Service.ViewModels.ListVehicleMakeViewModel>
 
 @{
     ViewBag.Title = "Makes";
@@ -22,10 +22,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.First().Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Abrv)
+            @Html.DisplayNameFor(model => model.First().Abrv)
         </th>
         <th></th>
     </tr>
@@ -48,3 +48,10 @@
     }
 
 </table>
+
+<div class="text-center">
+    <ul class="pagination">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchTerm =  Request.QueryString["searchTerm"] }))
+    </ul>
+</div>

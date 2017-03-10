@@ -5,7 +5,7 @@ namespace VehicleApp.Service.Interfaces
 {
     public interface IVehicleMakeService
     {
-        List<VehicleMake> Get(string searchTerm);
+        List<VehicleMake> Get(int? page, string searchTerm);
         void Create(VehicleMake vehicleMake);
         VehicleMake Edit(int? Id);
         void Edit(VehicleMake vehicleMake);
