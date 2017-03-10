@@ -1,4 +1,5 @@
 ﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Web.Mvc;
@@ -18,9 +19,13 @@ namespace VehicleApp.MVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index(int? page, string searchTerm = null, string sortBy = null)
+        public ActionResult Index(int? page, string sortOrder, string searchTerm = null)
         {
-            List<VehicleMake> model = service.Get(page, searchTerm, sortBy);
+
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "NameDesc" : "";
+            ViewBag.DateSortParm = sortOrder == "Abrv" ? "AbrvDesc" : "Abrv";
+
+            List<VehicleMake> model = service.Get(page, searchTerm, sortOrder);
             IEnumerable<ListVehicleMakeViewModel> viewModel = AutoMapper.Mapper.Map<List<VehicleMake>, IEnumerable<ListVehicleMakeViewModel>>(model);
             int pageSize = 10;
             int pageNumber = (page ?? 1);

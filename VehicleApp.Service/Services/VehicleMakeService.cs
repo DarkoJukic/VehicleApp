@@ -13,20 +13,23 @@ namespace VehicleApp.Service
         {
             this.context = context;
         }
-        public List<VehicleMake> Get(int? page, string searchTerm, string sortBy)
+        public List<VehicleMake> Get(int? page, string searchTerm, string sortOrder)
         {
-            if (sortBy == null || sortBy == "Make")
+            var model = context.Makes.Where(vehicle => searchTerm == null || vehicle.Name.StartsWith(searchTerm));
+            switch (sortOrder)
             {
-                var model = context.Makes.Where(vehicle => searchTerm == null || vehicle.Name.StartsWith(searchTerm))
-                    .OrderBy(vehicle => vehicle.Name)
-                    .ToList();
-                return model;
-            } else
-            {
-                var model = context.Makes.Where(vehicle => searchTerm == null || vehicle.Name.StartsWith(searchTerm))
-                    .OrderBy(vehicle => vehicle.Abrv)
-                    .ToList();
-                return model;
+                case "NameDesc":
+                   return model.OrderByDescending(vehicle => vehicle.Name)
+                        .ToList();
+                case "Abrv":
+                    return model.OrderBy(vehicle => vehicle.Abrv)
+                         .ToList();
+                case "AbrvDesc":
+                    return model.OrderByDescending(vehicle => vehicle.Abrv)
+                         .ToList();             
+                default:
+                    return model.OrderBy(vehicle => vehicle.Name)
+                         .ToList();
             }
         }
 

@@ -9,7 +9,7 @@
 
 
 <form method="get" class="form-horizontal">
-    <div class="input-group">
+    @*<div class="input-group">
         <label>Sort By: </label>
         <div class="btn-group" data-toggle="buttons">
             <label class="btn btn-primary active">
@@ -21,7 +21,7 @@
              new { id = "IsFemale" }) Abrv
             </label>
         </div>
-    </div>
+    </div>*@
     <br>
     <div class="input-group">
         <span class="input-group-btn">
@@ -32,6 +32,7 @@
 </form>
 
 
+
 <br />
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -39,11 +40,12 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().Name)
+            @Html.ActionLink("Make", "Index", new { sortOrder = ViewBag.NameSortParm, searchTerm = Request.QueryString["searchTerm"] })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().Abrv)
-        </th>
+            @Html.ActionLink("Abrv", "Index", new { sortOrder = ViewBag.DateSortParm, searchTerm = Request.QueryString["searchTerm"] })
+
+
         <th></th>
     </tr>
 
@@ -69,6 +71,6 @@
 <div class="text-center">
     <ul class="pagination">
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchTerm =  Request.QueryString["searchTerm"], sortBy = Request.QueryString["sortBy"] }))
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchTerm =  Request.QueryString["searchTerm"], sortBy = Request.QueryString["orderBy"] }))
     </ul>
 </div>
