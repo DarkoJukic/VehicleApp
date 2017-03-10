@@ -18,9 +18,9 @@ namespace VehicleApp.MVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index(int? page, string searchTerm = null)
+        public ActionResult Index(int? page, string searchTerm = null, string sortBy = null)
         {
-            List<VehicleMake> model = service.Get(page, searchTerm);
+            List<VehicleMake> model = service.Get(page, searchTerm, sortBy);
             IEnumerable<ListVehicleMakeViewModel> viewModel = AutoMapper.Mapper.Map<List<VehicleMake>, IEnumerable<ListVehicleMakeViewModel>>(model);
             int pageSize = 10;
             int pageNumber = (page ?? 1);

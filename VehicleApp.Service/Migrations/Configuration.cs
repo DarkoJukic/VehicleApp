@@ -37,12 +37,12 @@ namespace VehicleApp.Service.Migrations
                     }
                 });
 
-               // for (int i = 0; i < 50; i++)
-               // {
-               //     context.Makes.AddOrUpdate(r => r.Name,
-               //         new VehicleMake { Name = "Make" + i.ToString() }
-               //);
-            //}
+                for (int i = 0; i < 50; i++)
+                {
+                    context.Makes.AddOrUpdate(r => r.Name,
+                        new VehicleMake { Name = "Make" + i.ToString(), Abrv ="A" + i.ToString() }
+               );
+            }
         }
     }
 }
