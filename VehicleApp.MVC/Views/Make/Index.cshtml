@@ -9,19 +9,19 @@
 
 
 <form method="get" class="form-horizontal">
-    @*<div class="input-group">
-        <label>Sort By: </label>
+    <div class="input-group">
+        <label>Search By: </label>
         <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-primary active">
-                @Html.RadioButton("sortBy", "Make", true,
-            new { id = "IsMale" }) Make
+            <label class="btn btn-primary">
+                @Html.RadioButton("searchBy", "Make", true,
+            new { id = "Make" }) Make
             </label>
             <label class="btn btn-primary">
-                @Html.RadioButton("sortBy", "Abrv",
-             new { id = "IsFemale" }) Abrv
+                @Html.RadioButton("searchBy", "Abrv",
+             new { id = "Model" }) Abrv
             </label>
         </div>
-    </div>*@
+    </div>
     <br>
     <div class="input-group">
         <span class="input-group-btn">
@@ -40,10 +40,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("Make", "Index", new { sortOrder = ViewBag.NameSortParm, searchTerm = Request.QueryString["searchTerm"] })
+            @Html.ActionLink("Make", "Index", new { sortOrder = ViewBag.NameSortParm, searchTerm = Request.QueryString["searchTerm"], searchBy = Request.QueryString["searchBy"] })
         </th>
         <th>
-            @Html.ActionLink("Abrv", "Index", new { sortOrder = ViewBag.DateSortParm, searchTerm = Request.QueryString["searchTerm"] })
+            @Html.ActionLink("Abrv", "Index", new { sortOrder = ViewBag.DateSortParm, searchTerm = Request.QueryString["searchTerm"], searchBy = Request.QueryString["searchBy"] })
 
 
         <th></th>
@@ -71,6 +71,6 @@
 <div class="text-center">
     <ul class="pagination">
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchTerm =  Request.QueryString["searchTerm"], sortBy = Request.QueryString["orderBy"] }))
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchTerm =  Request.QueryString["searchTerm"], searchBy = Request.QueryString["searchBy"], sortBy = Request.QueryString["orderBy"] }))
     </ul>
 </div>

@@ -13,9 +13,19 @@ namespace VehicleApp.Service
         {
             this.context = context;
         }
-        public List<VehicleMake> Get(int? page, string searchTerm, string sortOrder)
+        public List<VehicleMake> Get(int? page, string searchBy, string searchTerm, string sortOrder)
         {
-            var model = context.Makes.Where(vehicle => searchTerm == null || vehicle.Name.StartsWith(searchTerm));
+            var model = context.Makes.AsQueryable();
+
+            if (searchBy == "Abrv")
+            {
+                model = model.Where(vehicle => vehicle.Abrv.StartsWith(searchTerm) || searchTerm == null);
+            }
+            else
+            {
+                model = model.Where(vehicle => vehicle.Name.StartsWith(searchTerm) || searchTerm == null);
+            }
+
             switch (sortOrder)
             {
                 case "NameDesc":
