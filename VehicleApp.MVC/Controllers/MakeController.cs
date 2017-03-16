@@ -18,7 +18,7 @@ namespace VehicleApp.MVC.Controllers
 
         public MakeController(VehicleMakeService service)
         {
-            this.service = new VehicleMakeService(new VehicleMakeRepository(new VehicleDbContext()));
+            this.service = service;
         }
 
         [HttpGet]
