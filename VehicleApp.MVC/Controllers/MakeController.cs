@@ -2,9 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using VehicleApp.Service.Interfaces;
-using VehicleApp.Service.Models;
+using VehicleApp.Repository;
+using VehicleApp.Repository.Models;
+using VehicleApp.Service;
+using VehicleApp.Service.Common;
 using VehicleApp.Service.ViewModels;
 
 namespace VehicleApp.MVC.Controllers
@@ -13,17 +16,17 @@ namespace VehicleApp.MVC.Controllers
     {
         private readonly IVehicleMakeService service;
 
-        public MakeController(IVehicleMakeService service)
+        public MakeController(VehicleMakeService service)
         {
-            this.service = service;
+            this.service = new VehicleMakeService(new VehicleMakeRepository(new VehicleDbContext()));
         }
 
         [HttpGet]
-        public ActionResult Index(int? page, string sortOrder, string searchBy, string searchTerm = null)
+        public async Task<ActionResult> Index(int? page, string sortOrder, string searchBy, string searchTerm = null)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "NameDesc" : "";
             ViewBag.DateSortParm = sortOrder == "Abrv" ? "AbrvDesc" : "Abrv";
-            List<VehicleMake> model = service.Get(page, searchBy, searchTerm, sortOrder);
+            List<VehicleMake> model = await service.GetAllVehicleMakes(page, searchBy, searchTerm, sortOrder);
             IEnumerable<ListVehicleMakeViewModel> viewModel = AutoMapper.Mapper.Map<List<VehicleMake>, IEnumerable<ListVehicleMakeViewModel>>(model);
             int pageSize = 10;
             int pageNumber = (page ?? 1);
@@ -46,11 +49,10 @@ namespace VehicleApp.MVC.Controllers
             else
             {
                 VehicleMake model = AutoMapper.Mapper.Map<CreateVehicleMakeViewModel, VehicleMake>(viewModel);
-                service.Create(model);
+                service.CreateVehicleMake(model);
                 return RedirectToAction("Index");
             }
         }
-
 
         [HttpGet]
         public ActionResult Edit(int? Id)
@@ -59,7 +61,7 @@ namespace VehicleApp.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = service.Edit(Id);
+            var model = service.EditVehicleMake(Id);
             var viewModel = AutoMapper.Mapper.Map<VehicleMake, CreateVehicleMakeViewModel>(model);
             if (viewModel == null)
             {
@@ -78,7 +80,7 @@ namespace VehicleApp.MVC.Controllers
             else
             {
                 var model = AutoMapper.Mapper.Map<CreateVehicleMakeViewModel, VehicleMake>(viewModel);
-                service.Edit(model);
+                service.EditVehicleMake(model);
                 return RedirectToAction("Index");
             }
         }
@@ -89,7 +91,7 @@ namespace VehicleApp.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = service.Delete(Id);
+            var model = service.DeleteVehicleMake(Id);
             if (model == null)
             {
                 return HttpNotFound();
@@ -100,7 +102,7 @@ namespace VehicleApp.MVC.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int Id)
         {
-            service.DeleteConfirmed(Id);
+            service.DeleteVehicleMakeConfirmed(Id);
             return RedirectToAction("Index");
         }
     }

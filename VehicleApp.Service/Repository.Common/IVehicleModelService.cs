@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using VehicleApp.Service.Models;
+using VehicleApp.Repository.Models;
 
-namespace VehicleApp.Service.Interfaces
+namespace VehicleApp.Repository.Interfaces
 {
     public interface IVehicleModelService
     {

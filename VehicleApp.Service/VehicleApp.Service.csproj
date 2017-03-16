@@ -49,16 +49,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IVehicleMakeService.cs" />
-    <Compile Include="Interfaces\IVehicleModelService.cs" />
-    <Compile Include="Mapping\VehicleMakeMapping.cs" />
+    <Compile Include="Model.Common\IVehicleMake.cs" />
+    <Compile Include="Model.Common\IVehicleModel.cs" />
+    <Compile Include="Model\VehicleMake.cs" />
+    <Compile Include="Model\VehicleModel.cs" />
+    <Compile Include="Repository.Common\IVehicleMakeRepository.cs" />
+    <Compile Include="Repository.Common\IVehicleModelService.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\VehicleDbContext.cs" />
-    <Compile Include="Models\VehicleModel.cs" />
-    <Compile Include="Models\VehicleMake.cs" />
+    <Compile Include="DAL\VehicleDbContext.cs" />
+    <Compile Include="DAL\Entities\VehicleModel.cs" />
+    <Compile Include="DAL\Entities\VehicleMake.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\VehicleMakeService.cs" />
-    <Compile Include="Services\VehicleModelService.cs" />
+    <Compile Include="Repository\VehicleMakeRepository.cs" />
+    <Compile Include="Repository\VehicleModelService.cs" />
+    <Compile Include="Service.Common\IVehicleMakeService.cs" />
+    <Compile Include="Service\VehicleMakeService.cs" />
     <Compile Include="ViewModels\CreateVehicleMakeViewModel.cs" />
     <Compile Include="ViewModels\CreateVehicleModelViewModel.cs" />
     <Compile Include="ViewModels\ListVehicleMakeViewModel.cs" />
@@ -67,6 +72,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

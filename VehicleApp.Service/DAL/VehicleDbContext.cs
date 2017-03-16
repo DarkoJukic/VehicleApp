@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace VehicleApp.Service.Models
+namespace VehicleApp.Repository.Models
 {
     public class VehicleDbContext : DbContext
     {

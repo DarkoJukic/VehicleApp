@@ -1,9 +1,9 @@
 using System;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
-using VehicleApp.Service.Interfaces;
-using VehicleApp.Service;
-using VehicleApp.Service.Models;
+using VehicleApp.Repository.Interfaces;
+using VehicleApp.Repository;
+using VehicleApp.Repository.Models;
 
 namespace VehicleApp.MVC.App_Start
 {
@@ -40,7 +40,7 @@ namespace VehicleApp.MVC.App_Start
 
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
-            container.RegisterType<IVehicleMakeService, VehicleMakeService>();
+            container.RegisterType<IVehicleMakeRepository, VehicleMakeRepository>();
             container.RegisterType<IVehicleModelService, VehicleModelService>();
             container.RegisterType<VehicleDbContext, VehicleDbContext>();
         }

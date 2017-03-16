@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using VehicleApp.Service.Interfaces;
-using VehicleApp.Service.Models;
+using System.Threading.Tasks;
+using VehicleApp.Repository.Interfaces;
+using VehicleApp.Repository.Models;
 
-namespace VehicleApp.Service
+namespace VehicleApp.Repository
 {
-    public class VehicleMakeService : IVehicleMakeService
+    public class VehicleMakeRepository : IVehicleMakeRepository
     {
         private VehicleDbContext context;
-        public VehicleMakeService(VehicleDbContext context)
+        public VehicleMakeRepository(VehicleDbContext context)
         {
             this.context = context;
         }
-        public List<VehicleMake> Get(int? page, string searchBy, string searchTerm, string sortOrder)
+        public async Task<List<VehicleMake>> Get(int? page, string searchBy, string searchTerm, string sortOrder)
         {
             var model = context.Makes.AsQueryable();
 
@@ -29,21 +30,20 @@ namespace VehicleApp.Service
             switch (sortOrder)
             {
                 case "NameDesc":
-                   return model.OrderByDescending(vehicle => vehicle.Name)
-                        .ToList();
+                    return await model.OrderByDescending(vehicle => vehicle.Name).ToListAsync(); ;
+
                 case "Abrv":
-                    return model.OrderBy(vehicle => vehicle.Abrv)
-                         .ToList();
+                    return await model.OrderBy(vehicle => vehicle.Abrv).ToListAsync(); ;
+
                 case "AbrvDesc":
-                    return model.OrderByDescending(vehicle => vehicle.Abrv)
-                         .ToList();             
+                    return await model.OrderByDescending(vehicle => vehicle.Abrv).ToListAsync(); ;
+
                 default:
-                    return model.OrderBy(vehicle => vehicle.Name)
-                         .ToList();
+                    return await model.OrderBy(vehicle => vehicle.Name).ToListAsync();
             }
         }
 
-        public void Create(VehicleMake vehicleMake)
+    public void Create(VehicleMake vehicleMake)
         {
             context.Makes.Add(vehicleMake);
             context.SaveChanges();

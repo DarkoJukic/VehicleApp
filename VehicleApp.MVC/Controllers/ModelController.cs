@@ -4,9 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using VehicleApp.Service;
-using VehicleApp.Service.Interfaces;
-using VehicleApp.Service.Models;
+using VehicleApp.Repository.Interfaces;
+using VehicleApp.Repository.Models;
 using VehicleApp.Service.ViewModels;
 
 namespace VehicleApp.MVC.Controllers

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
-using VehicleApp.Service.Models;
+using System.Threading.Tasks;
+using VehicleApp.Repository.Models;
 
-namespace VehicleApp.Service.Interfaces
+namespace VehicleApp.Repository.Interfaces
 {
-    public interface IVehicleMakeService
+    public interface IVehicleMakeRepository
     {
-        List<VehicleMake> Get(int? page, string searchBy, string searchTerm, string sortBy);
+        Task<List<VehicleMake>> Get(int? page, string searchBy, string searchTerm, string sortBy);
         void Create(VehicleMake vehicleMake);
         VehicleMake Edit(int? Id);
         void Edit(VehicleMake vehicleMake);

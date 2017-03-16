@@ -1,4 +1,4 @@
-﻿using VehicleApp.Service.Models;
+﻿using VehicleApp.Repository.Models;
 using VehicleApp.Service.ViewModels;
 
 namespace VehicleApp.MVC.App_Start

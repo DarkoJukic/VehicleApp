@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using VehicleApp.Service.Interfaces;
-using VehicleApp.Service.Models;
+using VehicleApp.Repository.Interfaces;
+using VehicleApp.Repository.Models;
 
-namespace VehicleApp.Service
+namespace VehicleApp.Repository
 {
     public class VehicleModelService : IVehicleModelService
     {

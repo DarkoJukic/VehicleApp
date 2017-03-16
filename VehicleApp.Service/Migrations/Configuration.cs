@@ -1,11 +1,11 @@
-namespace VehicleApp.Service.Migrations
+namespace VehicleApp.Repository.Migrations
 {
     using Models;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<VehicleApp.Service.Models.VehicleDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<VehicleApp.Repository.Models.VehicleDbContext>
     {
         public Configuration()
         {
