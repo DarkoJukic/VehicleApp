@@ -1,2 +1,2 @@
 ﻿angular
-   .module('VehicleApp', []);
+   .module('VehicleApp', ['ui.bootstrap']);

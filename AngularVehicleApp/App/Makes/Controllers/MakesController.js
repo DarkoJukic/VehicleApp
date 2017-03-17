@@ -1,19 +1,30 @@
-﻿angular
-    .module('VehicleApp')
-    .controller('MakesController', MakesController);
+﻿(function () {
+    angular
+        .module('VehicleApp')
+        .controller('MakesController', MakesController);
 
-function MakesController($scope, $http) {
-    console.log(11)
-    $scope.make = "24554546";
-    console.log($scope.make)
+    MakesController.$inject = ['$scope', 'MakesService'];
+    function MakesController($scope, MakesService) {
 
-    $http.get('/api/Makes').then(
-        function (response) {
-            $scope.makes = response.data;
-            console.log(response)
-        },
-        function () {
-            alert("error");
-        })
+        $scope.make = {
+            name: "Test",
+            abrv: "Test"
+        };
 
-}
+
+        MakesService.GetMakes().then(function (data) {
+            $scope.makes = data;
+        }, function () {
+          console.log("Error");
+        });
+
+        $scope.CreateNewMake = function () {
+            console.log("function called")
+            MakesService.AddMake($scope.make).then(function (response) {
+                console.log("success")
+            }, function () {
+                console.log("Error");
+            });   
+        }
+    }
+})()

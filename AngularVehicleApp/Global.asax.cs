@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using VehicleApp.MVC.App_Start;
 
 namespace AngularVehicleApp
 {
@@ -16,6 +17,7 @@ namespace AngularVehicleApp
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            MappingConfig.RegisterMaps();
         }
     }
 }
