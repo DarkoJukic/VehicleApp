@@ -15,6 +15,8 @@ namespace VehicleApp.MVC.App_Start
     using Repository;
     using Repository.Interfaces;
     using Repository.Models;
+    using System.Web.Http;
+    using WebApiContrib.IoC.Ninject;
 
     public static class NinjectWebCommon 
     {
@@ -51,6 +53,9 @@ namespace VehicleApp.MVC.App_Start
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(kernel);
+
                 return kernel;
             }
             catch

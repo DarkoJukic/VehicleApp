@@ -15,6 +15,13 @@ namespace VehicleApp.MVC
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapHttpRoute(
+                name: "ModelsRoute",
+                routeTemplate: "api/Makes/{MakeId}/Models/{Id}",
+                defaults: new { controller = "Models", Id = RouteParameter.Optional }
+            );
+
+
+            routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }

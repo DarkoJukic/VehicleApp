@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Makes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="MakesController">
+    <h2>List of vehicle makes</h2>
+    @*<form method="get" class="form-horizontal">
+            <div class="input-group">
+                <label>Search By: </label>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        @Html.RadioButton("searchBy", "Make", true,
+                new { id = "Make" }) Make
+                    </label>
+                    <label class="btn btn-primary">
+                        @Html.RadioButton("searchBy", "Abrv",
+                 new { id = "Model" }) Abrv
+                    </label>
+                </div>
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Filter</button>
+                    <input type="text" class="form-control" name="searchTerm" placeholder="Search by make">
+                </span>
+            </div>
+        </form>*@
+    <br />
+    <p>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Make
+            </th>
+            <th>
+                Abrv
+            </th>
+        </tr>
+        <tr ng-repeat="make in makes">
+            <td>
+                {{make.Name}}
+            </td>
+            <td>
+                {{make.Abrv}}
+            </td>
+        </tr>
+    </table>
+</div>

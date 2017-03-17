@@ -13,6 +13,11 @@ namespace VehicleApp.MVC.App_Start
                 config.CreateMap<VehicleMake, ListVehicleMakeViewModel>();
                 config.CreateMap<CreateVehicleMakeViewModel, VehicleMake>();
                 config.CreateMap<VehicleMake, CreateVehicleMakeViewModel>();
+
+                config.CreateMap<Model.VehicleMake, VehicleMake>().ReverseMap();
+  
+
+
                 // VehicleModel
                 config.CreateMap<VehicleModel, ListVehicleModelViewModel>();
                 config.CreateMap<CreateVehicleModelViewModel, VehicleModel>();

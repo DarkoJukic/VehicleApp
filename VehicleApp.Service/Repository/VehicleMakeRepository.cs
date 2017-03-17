@@ -66,9 +66,13 @@ namespace VehicleApp.Repository
         }
         public void DeleteConfirmed(int? Id)
         {
+
             VehicleMake vehicleMake = context.Makes.Find(Id);
-            context.Makes.Remove(vehicleMake);
-            context.SaveChanges();
+            if (vehicleMake != null)
+            {
+                context.Makes.Remove(vehicleMake);
+                context.SaveChanges();
+            }
         }
     }
 }
