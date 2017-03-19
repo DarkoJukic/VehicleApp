@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <base href="/">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -20,13 +21,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Makes", "Index", "Makes")</li>
-                    <li>@Html.ActionLink("Models", "Index", "Models")</li>
+                    <li><a ui-sref="Makes">Makes</a></li>
+                    <li><a ui-sref="Models">Models</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -38,11 +40,9 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular-app")
+    @Scripts.Render("~/bundles/angular-ui")
+    <script src="~/Scripts/angular-resource.js"></script>
     @RenderSection("scripts", required: false)
-    <script src="~/App/app.js"></script>
-    <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
-    <script src="~/App/Makes/Controllers/MakesController.js"></script>
-    <script src="~/App/Makes/Services/MakesService.js"></script>
-
 </body>
 </html>

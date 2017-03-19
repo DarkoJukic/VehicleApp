@@ -223,8 +223,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\app.js" />
-    <Content Include="App\Makes\Controllers\MakesController.js" />
-    <Content Include="App\Makes\Services\MakesService.js" />
+    <Content Include="App\Components\Makes\Controllers\makesController.js" />
+    <Content Include="App\Components\Makes\makesModalService.js" />
+    <Content Include="App\Components\Makes\Modals\AddOrUpdateMakeModal.html" />
+    <Content Include="App\Components\Makes\Modals\addOrUpdateMakeModalController.js" />
+    <Content Include="App\Components\Makes\Modals\DeleteMakeModal.html" />
+    <Content Include="App\Components\Makes\Modals\DeleteMakeModalController.js" />
+    <Content Include="App\Views\Makes.html" />
+    <Content Include="App\Components\Makes\Services\makesDataService.js" />
+    <Content Include="App\Views\Models.html" />
     <Content Include="Content\bootstrap-flatly.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -260,6 +267,8 @@
     <Content Include="Scripts\angular-scenario.js" />
     <Content Include="Scripts\angular-touch.js" />
     <Content Include="Scripts\angular-touch.min.js" />
+    <Content Include="Scripts\angular-ui-router.js" />
+    <Content Include="Scripts\angular-ui-router.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
@@ -281,6 +290,8 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="App\index.cshtml" />
+    <Content Include="App\app.routes.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />
@@ -1057,20 +1068,11 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\version.json" />
-    <Content Include="Views\Makes\Create.cshtml" />
-    <Content Include="Views\Makes\Delete.cshtml" />
-    <Content Include="Views\Makes\Edit.cshtml" />
-    <Content Include="Views\Makes\Index.cshtml" />
-    <Content Include="Views\Model\Create.cshtml" />
-    <Content Include="Views\Model\Delete.cshtml" />
-    <Content Include="Views\Model\Edit.cshtml" />
-    <Content Include="Views\Model\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\Models\Controllers\" />
-    <Folder Include="App\Models\Services\" />
+    <Folder Include="App\Components\Models\Controllers\" />
+    <Folder Include="App\Components\Models\Services\" />
     <Folder Include="App\Shared\" />
-    <Folder Include="App\Views\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
