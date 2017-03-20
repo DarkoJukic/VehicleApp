@@ -3,16 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
+using VehicleApp.Model;
+using VehicleApp.Repository.Interfaces;
+using VehicleApp.Service.Service.Common;
 
 namespace VehicleApp.MVC.Controllers.Api
 {
-    public class Modelsontroller : ApiController
+    public class ModelsController : ApiController
     {
-        public int Get(int MakeId)
+
+        private readonly IVehicleModelService service;
+
+        public ModelsController(IVehicleModelService service)
         {
-            return MakeId;
+            this.service = service;
         }
+
+
+        public async Task<IEnumerable<VehicleApp.Repository.Models.VehicleModel>> GetModelsByMakeId(int Id)
+        {
+            return await service.GetModelsByMakeId(Id);
+        }
+
+
+
+        //public int Get(int MakeId)
+        //{
+        //    IEnumerable<VehicleApp.Repository.Models.VehicleModel> model = await service.GetModelsByMakeId(MakeId);
+
+
+
+        //    service.Get()
+        //    IEnumerable<VehicleModel> model = service.Get(Id);
+        //    IEnumerable<ListVehicleModelViewModel> viewModel = AutoMapper.Mapper.Map<IEnumerable<VehicleModel>, IEnumerable<ListVehicleModelViewModel>>(model);
+        //    return View(viewModel);
+
+
+        //    return MakeId;
+        //}
 
         public void Post([FromBody]string value)
         {

@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using VehicleApp.Repository.Interfaces;
 using VehicleApp.Repository.Models;
 
 namespace VehicleApp.Repository
 {
-    public class VehicleModelService : IVehicleModelService
+    public class VehicleModelRepository : IVehicleModelRepository
     {
         private VehicleDbContext context;
-        public VehicleModelService(VehicleDbContext context)
+        public VehicleModelRepository(VehicleDbContext context)
         {
             this.context = context;
         }
-        public IEnumerable<VehicleModel> Get(int MakeId)
+        public async Task<IEnumerable<VehicleModel>> Get(int MakeId)
         {
             // Need to implement paging and filtering in future
             var model = context.Models.Where(vehicle => vehicle.VehicleMakeId == MakeId)

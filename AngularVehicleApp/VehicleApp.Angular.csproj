@@ -224,11 +224,13 @@
   <ItemGroup>
     <Content Include="App\app.js" />
     <Content Include="App\Components\Makes\Controllers\makesController.js" />
-    <Content Include="App\Components\Makes\makesModalService.js" />
+    <Content Include="App\Components\Makes\Services\makesModalService.js" />
     <Content Include="App\Components\Makes\Modals\AddOrUpdateMakeModal.html" />
     <Content Include="App\Components\Makes\Modals\addOrUpdateMakeModalController.js" />
     <Content Include="App\Components\Makes\Modals\DeleteMakeModal.html" />
     <Content Include="App\Components\Makes\Modals\DeleteMakeModalController.js" />
+    <Content Include="App\Components\Models\Controllers\modelsController.js" />
+    <Content Include="App\Components\Models\Services\modelsDataService.js" />
     <Content Include="App\Views\Makes.html" />
     <Content Include="App\Components\Makes\Services\makesDataService.js" />
     <Content Include="App\Views\Models.html" />
@@ -1070,8 +1072,6 @@
     <Content Include="Scripts\version.json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\Components\Models\Controllers\" />
-    <Folder Include="App\Components\Models\Services\" />
     <Folder Include="App\Shared\" />
     <Folder Include="App_Data\" />
   </ItemGroup>

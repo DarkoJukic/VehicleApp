@@ -23,6 +23,7 @@
             // this needs to be added when status codes are returned.
             promise.$promise.then(function (response) {
             });
+            window.location.reload();
             $uibModalInstance.close();
         };
 

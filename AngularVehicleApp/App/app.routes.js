@@ -23,9 +23,14 @@
             })
 
             .state('Models', {
-                url: '/Models',
+                url: '/Models/:Id',
                 templateUrl: '/App/Views/Models.html',
-
+                controller: 'ModelsController',
+                resolve: {
+                    models: function (ModelsDataService, $stateParams) {
+                        return ModelsDataService.GetModelsByMakeId($stateParams.Id).$promise;
+                    }
+                }
             });
 
         $locationProvider.html5Mode(true);

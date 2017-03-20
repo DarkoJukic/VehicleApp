@@ -72,7 +72,7 @@ namespace VehicleApp.MVC.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IVehicleMakeService>().To<VehicleMakeService>().InRequestScope();
-            kernel.Bind<IVehicleModelService>().To<VehicleModelService>().InRequestScope();
+            kernel.Bind<IVehicleModelRepository>().To<VehicleModelRepository>().InRequestScope();
             kernel.Bind<IVehicleMakeRepository>().To<VehicleMakeRepository>().InRequestScope();
             kernel.Bind<VehicleDbContext>().To<VehicleDbContext>().InRequestScope();
         }        

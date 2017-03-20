@@ -1,4 +1,4 @@
-﻿// djelatnik-data.service.js
+﻿// makes-data.service.js
 
 (function () {
     angular

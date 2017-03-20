@@ -18,18 +18,22 @@
 
         $scope.CreateMake = function (make) {
             var promise = MakesDataService.CreateMake(make);
-            $uibModalInstance.close();
             // this needs to be added when status codes are returned.
             promise.$promise.then(function (response) {
             });
+            // later instead of reload edited make should be added to list locally
+            window.location.reload();
+            $uibModalInstance.close();
         }
 
         $scope.EditMake = function (make, id) {
             var promise = MakesDataService.EditMake(make, id);
             // this needs to be added when status codes are returned.
             promise.$promise.then(function (response) {
-                $uibModalInstance.close();
             });
+            // later instead of reload edited make should be changed on list locally
+            window.location.reload();
+            $uibModalInstance.close();
         }
 
         $scope.cancel = function () {

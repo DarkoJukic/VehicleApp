@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using VehicleApp.Repository.Models;
 
 namespace VehicleApp.Repository.Interfaces
 {
-    public interface IVehicleModelService
+    public interface IVehicleModelRepository
     {
-        IEnumerable<VehicleModel> Get(int MakeId);
+        Task<IEnumerable<VehicleModel>> Get(int MakeId);
         void Create(VehicleModel vehicleMake);
         VehicleModel Edit(int? Id);
         void Edit(VehicleModel vehicleModel);

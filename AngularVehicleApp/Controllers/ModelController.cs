@@ -12,20 +12,20 @@ namespace VehicleApp.MVC.Controllers
 {
     public class ModelController : Controller
     {
-        private readonly IVehicleModelService service;
+        private readonly IVehicleModelRepository service;
 
-        public ModelController(IVehicleModelService service)
+        public ModelController(IVehicleModelRepository service)
         {
             this.service = service;
         }
 
         // GET: Model
-        public ActionResult Index(int Id)
-        {
-            IEnumerable<VehicleModel> model = service.Get(Id);
-            IEnumerable<ListVehicleModelViewModel> viewModel = AutoMapper.Mapper.Map<IEnumerable<VehicleModel>, IEnumerable< ListVehicleModelViewModel>>(model);
-            return View(viewModel);
-        }
+        //public ActionResult Index(int Id)
+        //{
+        //    IEnumerable<VehicleModel> model = service.Get(Id);
+        //    IEnumerable<ListVehicleModelViewModel> viewModel = AutoMapper.Mapper.Map<IEnumerable<VehicleModel>, IEnumerable< ListVehicleModelViewModel>>(model);
+        //    return View(viewModel);
+        //}
         [HttpGet]
         public ActionResult Create(int Id)
         {

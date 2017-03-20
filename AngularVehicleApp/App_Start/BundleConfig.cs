@@ -24,7 +24,8 @@ namespace AngularVehicleApp
 
             bundles.Add(new ScriptBundle("~/bundles/angular-ui").Include(
                     "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js",
-                    "~/Scripts/angular-ui-router.min.js"));
+                    "~/Scripts/angular-ui-router.min.js",
+                    "~/Scripts/angular-resource.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular-app")
                 .IncludeDirectory("~/app", "*.js", true));

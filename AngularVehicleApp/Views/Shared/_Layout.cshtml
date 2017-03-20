@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Vehicle App ASP.NET </title>
     <base href="/">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -22,7 +22,6 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a ui-sref="Makes">Makes</a></li>
-                    <li><a ui-sref="Models">Models</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -33,7 +32,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - ASP.NET Application</p>
         </footer>
     </div>
 
@@ -42,7 +41,6 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular-app")
     @Scripts.Render("~/bundles/angular-ui")
-    <script src="~/Scripts/angular-resource.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
