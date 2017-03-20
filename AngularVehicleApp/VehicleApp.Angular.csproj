@@ -206,12 +206,9 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\MakesApiController.cs" />
     <Compile Include="Controllers\Api\ModelsApiController.cs" />
     <Compile Include="Controllers\MakesController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ModelController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -223,17 +220,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\app.js" />
-    <Content Include="App\Components\Makes\Controllers\makesController.js" />
-    <Content Include="App\Components\Makes\Services\makesModalService.js" />
-    <Content Include="App\Components\Makes\Modals\AddOrUpdateMakeModal.html" />
-    <Content Include="App\Components\Makes\Modals\addOrUpdateMakeModalController.js" />
-    <Content Include="App\Components\Makes\Modals\DeleteMakeModal.html" />
-    <Content Include="App\Components\Makes\Modals\DeleteMakeModalController.js" />
-    <Content Include="App\Components\Models\Controllers\modelsController.js" />
-    <Content Include="App\Components\Models\Services\modelsDataService.js" />
-    <Content Include="App\Views\Makes.html" />
-    <Content Include="App\Components\Makes\Services\makesDataService.js" />
-    <Content Include="App\Views\Models.html" />
+    <Content Include="App\Components\Makes\Controllers\makes.controller.js" />
+    <Content Include="App\Components\Makes\Services\makes.modal.service.js" />
+    <Content Include="App\Components\Makes\Modals\add-or-update-make-modal.html" />
+    <Content Include="App\Components\Makes\Modals\add-or-update-make-modal.controller.js" />
+    <Content Include="App\Components\Makes\Modals\delete-make-modal.html" />
+    <Content Include="App\Components\Makes\Modals\delete-make-modal.ontroller.js" />
+    <Content Include="App\Components\Models\Controllers\models.controller.js" />
+    <Content Include="App\Components\Models\Services\models-data.service.js" />
+    <Content Include="App\Views\makes.html" />
+    <Content Include="App\Components\Makes\Services\makes-data.service.js" />
+    <Content Include="App\Views\models.html" />
     <Content Include="Content\bootstrap-flatly.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

@@ -3,10 +3,10 @@
 (function () {
     angular
 		.module('VehicleApp')
-		.factory('MakesDataService', MakesDataService);
+		.factory('makesDataService', makesDataService);
 
-    MakesDataService.$inject = ['$resource'];
-    function MakesDataService($resource) {
+    makesDataService.$inject = ['$resource'];
+    function makesDataService($resource) {
         var service = {
             GetAllMakes: GetAllMakes,
             CreateMake: CreateMake,

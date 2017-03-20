@@ -5,17 +5,17 @@
         .module('VehicleApp')
         .controller('MakesController', MakesController);
 
-    MakesController.$inject = ['$scope', 'MakesDataService', 'MakesModalService', 'makes'];
-    function MakesController($scope, MakesDataService,MakesModalService, makes) {
+    MakesController.$inject = ['$scope',  'makesModalService', 'makes'];
+    function MakesController($scope, makesModalService, makes) {
 
         $scope.makes = makes;
 
         $scope.AddOrUpdateMakeModal = function (make) {
-            var modalInstance = MakesModalService.AddOrUpdateMakeModal(make);
+            var modalInstance = makesModalService.AddOrUpdateMakeModal(make);
         };
 
         $scope.DeleteMakeModal = function (make) {
-            var modalInstance = MakesModalService.DeleteMakeModal(make);
+            var modalInstance = makesModalService.DeleteMakeModal(make);
         };
     }
 })()

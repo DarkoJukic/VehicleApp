@@ -4,10 +4,10 @@
     "use strict"
     angular
 		.module('VehicleApp')
-		.factory('MakesModalService', MakesModalService);
+		.factory('makesModalService', makesModalService);
 
-    MakesModalService.$inject = ['$uibModal', 'MakesDataService'];
-    function MakesModalService($uibModal) {
+    makesModalService.$inject = ['$uibModal', 'makesDataService'];
+    function makesModalService($uibModal) {
         var service = {
             AddOrUpdateMakeModal: AddOrUpdateMakeModal,
             DeleteMakeModal: DeleteMakeModal
@@ -17,7 +17,7 @@
 
         function AddOrUpdateMakeModal(make) {
             var modalInstance = $uibModal.open({
-                templateUrl: '/app/components/makes/modals/AddOrUpdateMakeModal.html',
+                templateUrl: '/app/components/makes/modals/add-or-update-make-modal.html',
                 controller: 'AddOrUpdateMakeModalController',
                 size: 'md',
                 resolve: {
@@ -30,7 +30,7 @@
 
         function DeleteMakeModal(make) {
             var modalInstance = $uibModal.open({
-                templateUrl: '/app/components/makes/modals/DeleteMakeModal.html',
+                templateUrl: '/app/components/makes/modals/delete-make-modal.html',
                 controller: 'DeleteMakeModalController',
                 size: 'md',
                 resolve: {

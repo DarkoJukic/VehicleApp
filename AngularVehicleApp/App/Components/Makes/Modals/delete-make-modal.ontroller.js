@@ -9,16 +9,16 @@
     DeleteMakeModalController.$inject = [
 		'$scope',
 		'$uibModalInstance',
-        'MakesDataService',
+        'makesDataService',
 		'make'
     ];
-    function DeleteMakeModalController($scope, $uibModalInstance, MakesDataService, make) {
+    function DeleteMakeModalController($scope, $uibModalInstance, makesDataService, make) {
 
         $scope.make = make;
         console.log($scope.make)
         $scope.DeleteMake = function (id) {
 
-            var promise = MakesDataService.DeleteMake(id);
+            var promise = makesDataService.DeleteMake(id);
             $uibModalInstance.close();
             // this needs to be added when status codes are returned.
             promise.$promise.then(function (response) {

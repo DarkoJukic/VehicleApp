@@ -8,16 +8,16 @@
     AddOrUpdateMakeModalController.$inject = [
 		'$scope',
 		'$uibModalInstance',
-        'MakesDataService',
+        'makesDataService',
         'make'
     ];
 
-    function AddOrUpdateMakeModalController($scope, $uibModalInstance, MakesDataService, make) {
+    function AddOrUpdateMakeModalController($scope, $uibModalInstance, makesDataService, make) {
 
         $scope.make = angular.copy(make);
 
         $scope.CreateMake = function (make) {
-            var promise = MakesDataService.CreateMake(make);
+            var promise = makesDataService.CreateMake(make);
             // this needs to be added when status codes are returned.
             promise.$promise.then(function (response) {
             });
@@ -27,7 +27,7 @@
         }
 
         $scope.EditMake = function (make, id) {
-            var promise = MakesDataService.EditMake(make, id);
+            var promise = makesDataService.EditMake(make, id);
             // this needs to be added when status codes are returned.
             promise.$promise.then(function (response) {
             });
