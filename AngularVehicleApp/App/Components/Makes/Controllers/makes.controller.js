@@ -9,7 +9,6 @@
     function MakesController($scope, makesModalService, makes) {
 
         $scope.makes = makes;
-
         $scope.AddOrUpdateMakeModal = function (make) {
             var modalInstance = makesModalService.AddOrUpdateMakeModal(make);
         };

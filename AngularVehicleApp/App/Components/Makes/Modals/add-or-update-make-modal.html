@@ -15,7 +15,7 @@
                                    class="form-control"
                                    id="name"
                                    name="name"
-                                   ng-model="make.Name"
+                                   ng-model="make.name"
                                    required>
                             <span ng-show="AddOrUpdateMakeForm.name.$error.required && !AddOrUpdateMakeForm.name.$pristine"
                                   class="help-block"><strong>Required</strong></span>
@@ -27,14 +27,14 @@
                                    class="form-control"
                                    id="abrv"
                                    name="abrv"
-                                   ng-model="make.Abrv">
+                                   ng-model="make.abrv">
                         </div>
                     </div>
                 </div>
 
                 <hr>
                 <!-- if Id doesn't exist then create new make. -->
-                <button ng-if="!make.Id" 
+                <button ng-if="!make.id" 
                         type="submit"
                         class="btn btn-primary"
                         ng-click="CreateMake(make)"
@@ -42,10 +42,10 @@
                         Create new make
                 </button>
                 <!-- if Id exists then edit make. -->
-                <button ng-if="make.Id" 
+                <button ng-if="make.id" 
                         type="submit"
                         class="btn btn-primary"
-                        ng-click="EditMake(make, make.Id)"
+                        ng-click="EditMake(make, make.id)"
                         ng-disabled="AddOrUpdateMakeForm.$invalid">
                         Edit make
                 </button>

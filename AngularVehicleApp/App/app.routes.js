@@ -23,12 +23,12 @@
             })
 
             .state('Models', {
-                url: '/Models/:Id',
+                url: '/Models/:id',
                 templateUrl: '/App/Views/models.html',
                 controller: 'ModelsController',
                 resolve: {
                     models: function (ModelsDataService, $stateParams) {
-                        return ModelsDataService.GetModelsByMakeId($stateParams.Id).$promise;
+                        return ModelsDataService.GetModelsByMakeId($stateParams.id).$promise;
                     }
                 }
             });

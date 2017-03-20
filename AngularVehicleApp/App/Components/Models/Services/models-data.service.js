@@ -13,8 +13,8 @@
 
         return service;
 
-        function GetModelsByMakeId(Id) {
-            return $resource('/api/models/:Id', { Id: "@id" }).query({ Id: Id });
+        function GetModelsByMakeId(id) {
+            return $resource('/api/models/:id', { id: "@id" }).query({ id: id });
         }
     }
 })();
