@@ -31,7 +31,6 @@
                         </div>
                     </div>
                 </div>
-
                 <hr>
                 <!-- if Id doesn't exist then create new make. -->
                 <button ng-if="!make.id" 
@@ -49,7 +48,7 @@
                         ng-disabled="AddOrUpdateMakeForm.$invalid">
                         Edit make
                 </button>
-
+                <button ng-if="make.id" type="button" class="btn btn-default" ng-click="reset()">Reset</button>
                 <button type="button" class="btn btn-danger" ng-click="cancel()">Cancel</button>
             </form>
         </div>

@@ -16,7 +16,7 @@
         return service;
 
         function AddOrUpdateMakeModal(make) {
-            var modalInstance = $uibModal.open({
+            return $uibModal.open({
                 templateUrl: '/app/components/makes/modals/add-or-update-make-modal.html',
                 controller: 'AddOrUpdateMakeModalController',
                 size: 'md',
@@ -29,7 +29,7 @@
         }
 
         function DeleteMakeModal(make) {
-            var modalInstance = $uibModal.open({
+            return $uibModal.open({
                 templateUrl: '/app/components/makes/modals/delete-make-modal.html',
                 controller: 'DeleteMakeModalController',
                 size: 'md',

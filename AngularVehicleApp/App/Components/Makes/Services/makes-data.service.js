@@ -23,7 +23,6 @@
         function CreateMake(make) {
             console.log("podaci koje saljem, " + make);
             var response = $resource('/api/makes').save(make);
-            console.log("response is" + JSON.stringify(response));
             return response
         }
 
@@ -38,7 +37,6 @@
             var response = $resource('/api/makes/:id', { id: '@id' }).delete({ id: id });
             return response
         }
-
     }
 })();
 

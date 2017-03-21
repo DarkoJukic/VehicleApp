@@ -22,34 +22,69 @@ namespace VehicleApp.MVC.Controllers
             this.service = service;
         }
 
-        // GET: api/Makes
-        public async Task<List<VehicleApp.Repository.Models.VehicleMake>> Get()
+        // GET: api/makes
+        public async Task<IHttpActionResult> Get()
         {
-            return await service.GetAllVehicleMakes(1, null, null, null);
+            return Ok(await service.GetAllVehicleMakes(1, null, null, null));
         }
 
 
-        // POST: api/Makes
-        public HttpResponseMessage Post([FromBody]VehicleMake vehicle)
+        // POST: api/makes
+        public IHttpActionResult Post([FromBody]VehicleMake vehicle)
         {
+            if (vehicle == null)
+            {
+                return BadRequest("Vehicle data not entered");
+            }
+
             var mappedVehicle = Mapper.Map<VehicleApp.Repository.Models.VehicleMake>(vehicle); 
 
             service.CreateVehicleMake(mappedVehicle);
 
-            return Request.CreateResponse(HttpStatusCode.Created, vehicle);
+            // if save is not successfull
+            //if (createdVehicle == null)
+            //{
+            //    return Conflict();
+            //}
+
+            return Created(Request.RequestUri + mappedVehicle.ToString(), vehicle);
         }
 
-        // PUT: api/Makes/5
-        public void Put(int id, [FromBody]VehicleMake vehicle)
+        // PUT: api/makes/5
+        public IHttpActionResult Put(int id, [FromBody]VehicleMake vehicle)
         {
+            if (vehicle == null)
+            {
+                return BadRequest("Vehicle data not entered");
+            }
+
             var mappedVehicle = Mapper.Map<VehicleApp.Repository.Models.VehicleMake>(vehicle);
+
+            if (mappedVehicle == null)
+            {
+                return NotFound();
+            }
             service.EditVehicleMake(mappedVehicle);
+            return Ok();
         }
 
-        // DELETE: api/Makes/5
-        public void Delete(int id)
+        // DELETE: api/makes/5
+        public IHttpActionResult Delete(int id)
         {
             service.DeleteVehicleMakeConfirmed(id);
+            return Ok();
+            //if exists
+            //if (status)
+            //{
+            //    //return new HttpResponseMessage(HttpStatusCode.OK);
+            //    return Ok();
+            //}
+            //else
+            //{
+            //    //throw new HttpResponseException(HttpStatusCode.NotFound);
+            //    return NotFound();
+            //}
+
         }
     }
 }

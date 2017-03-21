@@ -22,10 +22,11 @@ namespace AngularVehicleApp
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                       "~/Scripts/angular.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/angular-ui").Include(
+            bundles.Add(new ScriptBundle("~/bundles/libraries").Include(
                     "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js",
                     "~/Scripts/angular-ui-router.min.js",
-                    "~/Scripts/angular-resource.js"));
+                    "~/Scripts/angular-resource.js",
+                    "~/Scripts/toastr.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular-app")
                 .IncludeDirectory("~/app", "*.js", true));
@@ -36,7 +37,8 @@ namespace AngularVehicleApp
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-flatly.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/toastr.css"));
         }
     }
 }
