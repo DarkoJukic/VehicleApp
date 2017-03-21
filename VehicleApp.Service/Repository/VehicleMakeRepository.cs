@@ -43,36 +43,34 @@ namespace VehicleApp.Repository
             }
         }
 
-    public VehicleMake Create(VehicleMake vehicleMake)
+    public async Task<VehicleMake> Create(VehicleMake vehicleMake)
         {
             context.Makes.Add(vehicleMake);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             return vehicleMake;
         }
 
-        public VehicleMake Edit(int? Id)
+        public async Task<VehicleMake> Edit(int? Id)
         {
-            var model = context.Makes.Find(Id);
-            return model;
+            return await context.Makes.FindAsync(Id);
         }
-        public void Edit(VehicleMake vehicleMake)
+        public async Task Edit(VehicleMake vehicleMake)
         {
             context.Entry(vehicleMake).State = EntityState.Modified;
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
-        public VehicleMake Delete(int? Id)
+        public async Task<VehicleMake> Delete(int? Id)
         {
-            return context.Makes.Find(Id);
+            return await context.Makes.FindAsync(Id);
         }
-        public void DeleteConfirmed(int? Id)
+        public async Task DeleteConfirmed(int? Id)
         {
-
-            VehicleMake vehicleMake = context.Makes.Find(Id);
+            VehicleMake vehicleMake = await context.Makes.FindAsync(Id);
             if (vehicleMake != null)
             {
                 context.Makes.Remove(vehicleMake);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
         }
     }

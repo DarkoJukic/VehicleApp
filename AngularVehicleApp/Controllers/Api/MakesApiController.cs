@@ -30,28 +30,28 @@ namespace VehicleApp.MVC.Controllers
 
 
         // POST: api/makes
-        public IHttpActionResult Post([FromBody]VehicleMake vehicle)
+        public async Task<IHttpActionResult> Post([FromBody]VehicleMake vehicle)
         {
             if (vehicle == null)
             {
                 return BadRequest("Vehicle data not entered");
             }
 
-            var mappedVehicle = Mapper.Map<VehicleApp.Repository.Models.VehicleMake>(vehicle); 
+            var mappedVehicle = Mapper.Map<VehicleApp.Repository.Models.VehicleMake>(vehicle);
 
-            service.CreateVehicleMake(mappedVehicle);
+            await service.CreateVehicleMake(mappedVehicle);
 
-            // if save is not successfull
-            //if (createdVehicle == null)
-            //{
-            //    return Conflict();
-            //}
+            //if save is not successfull
+            if (mappedVehicle == null)
+            {
+                return Conflict();
+            }
 
             return Created(Request.RequestUri + mappedVehicle.ToString(), mappedVehicle);
         }
 
         // PUT: api/makes/5
-        public IHttpActionResult Put(int id, [FromBody]VehicleMake vehicle)
+        public async Task<IHttpActionResult> Put(int id, [FromBody]VehicleMake vehicle)
         {
             if (vehicle == null)
             {
@@ -64,7 +64,7 @@ namespace VehicleApp.MVC.Controllers
             {
                 return NotFound();
             }
-            service.EditVehicleMake(mappedVehicle);
+            await service.EditVehicleMake(mappedVehicle);
             return Ok();
         }
 

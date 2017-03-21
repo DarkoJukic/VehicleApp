@@ -17,9 +17,9 @@ namespace VehicleApp.Repository
         public async Task<IEnumerable<VehicleModel>> Get(int MakeId)
         {
             // Need to implement paging and filtering in future
-            var model = context.Models.Where(vehicle => vehicle.VehicleMakeId == MakeId)
+            var model = await context.Models.Where(vehicle => vehicle.VehicleMakeId == MakeId)
                 .OrderBy(vehicle => vehicle.Name)
-                .Take(10).ToList();
+                .Take(10).ToListAsync();
             return model;
         }
         public void Create(VehicleModel vehicleModel)

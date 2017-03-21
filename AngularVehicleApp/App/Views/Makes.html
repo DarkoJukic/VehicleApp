@@ -1,13 +1,13 @@
 ﻿<div>
-    <h2>Vehicle Makes</h2>
+    <h2>Makes</h2>
 
     <button class="btn btn-primary" uib-tooltip="Create new Make" ng-click="AddOrUpdateMakeModal()">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     </button>
     <br />
-    <p>
-    </p>
-    <table class="table">
+
+    <div ng-if="makes.length == 0">There are currently no makes added.</div>
+    <table class="table" ng-if="models.length != 0">
         <tr>
             <th>
                 Make 

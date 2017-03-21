@@ -11,15 +11,14 @@ namespace VehicleApp.Service.Service
 {
     public class VehicleModelService : IVehicleModelService
     {
-
         private IVehicleModelRepository repository;
         public VehicleModelService(IVehicleModelRepository repository)
         {
             this.repository = repository;
         }
-        public Task<IEnumerable<VehicleApp.Repository.Models.VehicleModel>> GetModelsByMakeId(int Id)
+        public async Task<IEnumerable<VehicleApp.Repository.Models.VehicleModel>> GetModelsByMakeId(int Id)
         {
-            return repository.Get(Id);
+            return await repository.Get(Id);
         }
     }
 }

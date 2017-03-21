@@ -17,33 +17,24 @@ namespace VehicleApp.Service
             this.repository = repository;
         }
 
-        public Task<List<VehicleMake>> GetAllVehicleMakes(int? page, string searchBy, string searchTerm, string sortBy)
+        public async Task<List<VehicleMake>> GetAllVehicleMakes(int? page, string searchBy, string searchTerm, string sortBy)
         {
-            return repository.Get(page, searchBy, searchTerm, sortBy);
+            return await repository.Get(page, searchBy, searchTerm, sortBy);
         }
 
-        public VehicleMake CreateVehicleMake(VehicleMake vehicleMake)
+        public async Task<VehicleMake> CreateVehicleMake(VehicleMake vehicleMake)
         {
-            return repository.Create(vehicleMake);
+            return await repository.Create(vehicleMake);
         }
 
-        public VehicleMake EditVehicleMake(int? Id)
+        public async Task EditVehicleMake(VehicleMake vehicleMake)
         {
-            return repository.Edit(Id);
+            await repository.Edit(vehicleMake);
         }
 
-        public void EditVehicleMake(VehicleMake vehicleMake)
+        public async Task DeleteVehicleMakeConfirmed(int? Id)
         {
-            repository.Edit(vehicleMake);
-        }
-        public VehicleMake DeleteVehicleMake(int? Id)
-        {
-            return repository.Delete(Id);
-        }
-
-        public void DeleteVehicleMakeConfirmed(int? Id)
-        {
-            repository.DeleteConfirmed(Id);
+            await repository.DeleteConfirmed(Id);
         }
     }
 }
