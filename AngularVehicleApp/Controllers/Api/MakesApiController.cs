@@ -47,7 +47,7 @@ namespace VehicleApp.MVC.Controllers
             //    return Conflict();
             //}
 
-            return Created(Request.RequestUri + mappedVehicle.ToString(), vehicle);
+            return Created(Request.RequestUri + mappedVehicle.ToString(), mappedVehicle);
         }
 
         // PUT: api/makes/5

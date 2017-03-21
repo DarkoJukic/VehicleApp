@@ -43,10 +43,11 @@ namespace VehicleApp.Repository
             }
         }
 
-    public void Create(VehicleMake vehicleMake)
+    public VehicleMake Create(VehicleMake vehicleMake)
         {
             context.Makes.Add(vehicleMake);
             context.SaveChanges();
+            return vehicleMake;
         }
 
         public VehicleMake Edit(int? Id)

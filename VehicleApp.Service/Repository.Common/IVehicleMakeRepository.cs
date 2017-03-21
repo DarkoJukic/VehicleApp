@@ -7,7 +7,7 @@ namespace VehicleApp.Repository.Interfaces
     public interface IVehicleMakeRepository
     {
         Task<List<VehicleMake>> Get(int? page, string searchBy, string searchTerm, string sortBy);
-        void Create(VehicleMake vehicleMake);
+        VehicleMake Create(VehicleMake vehicleMake);
         VehicleMake Edit(int? Id);
         void Edit(VehicleMake vehicleMake);
         VehicleMake Delete(int? Id);

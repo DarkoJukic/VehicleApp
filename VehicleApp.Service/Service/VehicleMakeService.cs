@@ -22,9 +22,9 @@ namespace VehicleApp.Service
             return repository.Get(page, searchBy, searchTerm, sortBy);
         }
 
-        public void CreateVehicleMake(VehicleMake vehicleMake)
+        public VehicleMake CreateVehicleMake(VehicleMake vehicleMake)
         {
-            repository.Create(vehicleMake);
+            return repository.Create(vehicleMake);
         }
 
         public VehicleMake EditVehicleMake(int? Id)
