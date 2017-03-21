@@ -10,7 +10,7 @@
 
         $scope.makes = makes;
         $scope.AddOrUpdateMakeModal = function (make, index) {
-        
+
             var modalInstance = makesModalService.AddOrUpdateMakeModal(make);
             // after Make is created or edited change it locally, without need of refresh.
             modalInstance.result.then(function (make) {
@@ -18,7 +18,7 @@
                 //After creating new make push it locally into makes list without refreshing page 
                 //if it is existing make, then edit existing make locally.
                 console.log(index);
-                if (!index) {
+                if (index == undefined) {
                     console.log("make" + JSON.stringify(make));
                     $scope.makes.push(make);
                 } else {

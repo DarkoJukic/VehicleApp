@@ -69,21 +69,10 @@ namespace VehicleApp.MVC.Controllers
         }
 
         // DELETE: api/makes/5
-        public IHttpActionResult Delete(int id)
+        public async Task<IHttpActionResult> Delete(int id)
         {
-            service.DeleteVehicleMakeConfirmed(id);
+            await service.DeleteVehicleMakeConfirmed(id);
             return Ok();
-            //if exists
-            //if (status)
-            //{
-            //    //return new HttpResponseMessage(HttpStatusCode.OK);
-            //    return Ok();
-            //}
-            //else
-            //{
-            //    //throw new HttpResponseException(HttpStatusCode.NotFound);
-            //    return NotFound();
-            //}
 
         }
     }
