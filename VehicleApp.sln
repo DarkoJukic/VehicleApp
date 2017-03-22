@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleApp.Service", "Vehic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleApp.MVC", "VehicleApp.MVC\VehicleApp.MVC.csproj", "{AE20B377-A4FD-46FB-8B95-240BEE7C3EDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleApp.Angular", "AngularVehicleApp\VehicleApp.Angular.csproj", "{992F8EC5-9AAD-4481-857C-D60FE1A92B53}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleApp.WebAPI", "VehicleApp.WebAPI\VehicleApp.WebAPI.csproj", "{992F8EC5-9AAD-4481-857C-D60FE1A92B53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
