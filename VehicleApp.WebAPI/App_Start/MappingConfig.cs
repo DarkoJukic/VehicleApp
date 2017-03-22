@@ -1,5 +1,5 @@
-﻿using VehicleApp.Repository.Models;
-using VehicleApp.Service.ViewModels;
+﻿using VehicleApp.Model;
+using VehicleApp.Service.Model.Common;
 
 namespace VehicleApp.MVC.App_Start
 {
@@ -10,18 +10,10 @@ namespace VehicleApp.MVC.App_Start
             AutoMapper.Mapper.Initialize(config =>
             {
                 // VehicleMake
-                config.CreateMap<VehicleMake, ListVehicleMakeViewModel>();
-                config.CreateMap<CreateVehicleMakeViewModel, VehicleMake>();
-                config.CreateMap<VehicleMake, CreateVehicleMakeViewModel>();
-
-                config.CreateMap<Model.VehicleMake, VehicleMake>().ReverseMap();
-                config.CreateMap<Model.VehicleModel, VehicleModel>().ReverseMap();
-                config.CreateMap<Model.VehicleModel, VehicleModel>().ReverseMap();
+                config.CreateMap<Repository.Models.VehicleMake, IVehicleMake>().ForSourceMember(x => x.Models, y => y.Ignore());
 
                 // VehicleModel
-                config.CreateMap<VehicleModel, ListVehicleModelViewModel>();
-                config.CreateMap<CreateVehicleModelViewModel, VehicleModel>();
-                config.CreateMap<VehicleModel, CreateVehicleModelViewModel>();
+                config.CreateMap<VehicleModel, VehicleModel>().ReverseMap();
             });
         }
     }

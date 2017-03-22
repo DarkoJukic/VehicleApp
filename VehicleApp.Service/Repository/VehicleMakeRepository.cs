@@ -30,17 +30,21 @@ namespace VehicleApp.Repository
             switch (sortOrder)
             {
                 case "NameDesc":
-                    return await model.OrderByDescending(vehicle => vehicle.Name).ToListAsync(); ;
-
+                    model.OrderByDescending(vehicle => vehicle.Name);
+                    break;
                 case "Abrv":
-                    return await model.OrderBy(vehicle => vehicle.Abrv).ToListAsync(); ;
+                    model.OrderBy(vehicle => vehicle.Abrv);
+                    break;
 
                 case "AbrvDesc":
-                    return await model.OrderByDescending(vehicle => vehicle.Abrv).ToListAsync(); ;
+                    model.OrderByDescending(vehicle => vehicle.Abrv);
+                    break;
 
                 default:
-                    return await model.OrderBy(vehicle => vehicle.Name).ToListAsync();
+                    model.OrderBy(vehicle => vehicle.Name);
+                    break;
             }
+            return await model.ToListAsync();
         }
 
     public async Task<VehicleMake> Create(VehicleMake vehicleMake)

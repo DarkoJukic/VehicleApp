@@ -1,15 +1,10 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using VehicleApp.Model;
-using VehicleApp.Service;
 using VehicleApp.Service.Common;
+using VehicleApp.Service.Model.Common;
 
 namespace VehicleApp.MVC.Controllers
 {
@@ -17,7 +12,7 @@ namespace VehicleApp.MVC.Controllers
     {
         private readonly IVehicleMakeService service;
 
-        public MakesController(VehicleMakeService service)
+        public MakesController(IVehicleMakeService service)
         {
             this.service = service;
         }
@@ -25,7 +20,12 @@ namespace VehicleApp.MVC.Controllers
         // GET: api/makes
         public async Task<IHttpActionResult> Get()
         {
-            return Ok(await service.GetAllVehicleMakes(1, null, null, null));
+            // currently hardcoded
+            List<Repository.Models.VehicleMake> makes = await service.GetAllVehicleMakes(1, null, null, null);
+
+            List<IVehicleMake> mappedMakes= Mapper.Map<List<IVehicleMake>>(makes);
+
+            return Ok(mappedMakes);
         }
 
 
@@ -37,7 +37,7 @@ namespace VehicleApp.MVC.Controllers
                 return BadRequest("Vehicle data not entered");
             }
 
-            var mappedVehicle = Mapper.Map<VehicleApp.Repository.Models.VehicleMake>(vehicle);
+            var mappedVehicle = Mapper.Map<Repository.Models.VehicleMake>(vehicle);
 
             await service.CreateVehicleMake(mappedVehicle);
 
@@ -58,7 +58,7 @@ namespace VehicleApp.MVC.Controllers
                 return BadRequest("Vehicle data not entered");
             }
 
-            var mappedVehicle = Mapper.Map<VehicleApp.Repository.Models.VehicleMake>(vehicle);
+            var mappedVehicle = Mapper.Map<Repository.Models.VehicleMake>(vehicle);
 
             if (mappedVehicle == null)
             {
@@ -73,7 +73,6 @@ namespace VehicleApp.MVC.Controllers
         {
             await service.DeleteVehicleMakeConfirmed(id);
             return Ok();
-
         }
     }
 }
