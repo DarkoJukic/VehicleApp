@@ -10,7 +10,7 @@ namespace VehicleApp.MVC.App_Start
             AutoMapper.Mapper.Initialize(config =>
             {
                 // VehicleMake
-                config.CreateMap<Repository.Models.VehicleMake, IVehicleMake>().ForSourceMember(x => x.Models, y => y.Ignore());
+                config.CreateMap<Repository.Models.VehicleMake, IVehicleMake>().ForSourceMember(x => x.Models, y => y.Ignore()).ReverseMap();
 
                 // VehicleModel
                 config.CreateMap<VehicleModel, VehicleModel>().ReverseMap();
