@@ -1,0 +1,56 @@
+﻿<div class="modal-content row">
+    <div class="modal-body">
+        <div>
+            <!-- if Id doesn't exist then create new make should be displayed. -->
+            <h4 ng-if="!make.Id"><strong>Create new vehicle make</strong></h4>
+            <h4 ng-if="make.Id"><strong>Edit vehicle make</strong></h4>
+            <hr>
+            <form id="AddOrUpdateMakeForm" name="AddOrUpdateMakeForm" novalidate>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="col-sm-6"
+                             ng-class="{ 'has-error' : AddOrUpdateMakeForm.name.$error.required && !AddOrUpdateMakeForm.name.$pristine }">
+                            <label for="name">Name</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="name"
+                                   name="name"
+                                   ng-model="make.name"
+                                   required>
+                            <span ng-show="AddOrUpdateMakeForm.name.$error.required && !AddOrUpdateMakeForm.name.$pristine"
+                                  class="help-block"><strong>Required</strong></span>
+                        </div>
+
+                        <div class="col-sm-6 form-input-bottom-padding">
+                            <label for="abrv">Abrv</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="abrv"
+                                   name="abrv"
+                                   ng-model="make.abrv">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <!-- if Id doesn't exist then create new make. -->
+                <button ng-if="!make.id" 
+                        type="submit"
+                        class="btn btn-primary"
+                        ng-click="CreateMake(make)"
+                        ng-disabled="AddOrUpdateMakeForm.$invalid">
+                        Create new make
+                </button>
+                <!-- if Id exists then edit make. -->
+                <button ng-if="make.id" 
+                        type="submit"
+                        class="btn btn-primary"
+                        ng-click="EditMake(make, make.id)"
+                        ng-disabled="AddOrUpdateMakeForm.$invalid">
+                        Edit make
+                </button>
+                <button ng-if="make.id" type="button" class="btn btn-default" ng-click="reset()">Reset</button>
+                <button type="button" class="btn btn-danger" ng-click="cancel()">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>

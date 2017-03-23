@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using VehicleApp.Model;
 using VehicleApp.Service.Common;
 using VehicleApp.Service.Model.Common;
 
 namespace VehicleApp.MVC.Controllers
 {
+    [EnableCorsAttribute("*", "*", "*")]
     public class MakesController : ApiController
     {
         private readonly IVehicleMakeService service;

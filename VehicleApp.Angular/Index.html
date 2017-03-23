@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <base href="/">
+</head>
+<body ng-app="VehicleApp">
+    <!--styles-->
+    <link href="App/Assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="App/Assets/css/toastr.min.css" rel="stylesheet" />
+    <link href="App/Assets/css/site.css" rel="stylesheet" />
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span><a ui-sref="Makes" class="navbar-brand">Makes</a></span>  
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a ui-sref="Makes">Makes</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        <div ui-view> </div>
+        <hr />
+        <footer>
+            <p>&copy; 2017</p>
+        </footer>
+    </div>
+
+    <!--libs-->
+    <script src="App/Assets/libs/angular.min.js"></script>
+    <script src="App/Assets/libs/angular-ui-router.min.js"></script>
+    <script src="App/Assets/libs/angular-resource.min.js"></script>
+    <script src="App/Assets/libs/jquery-1.6.3.min.js"></script>
+    <script src="App/Assets/libs/toastr.min.js"></script>
+    <script src="App/Assets/libs/ui-bootstrap-tpls.min.js"></script>
+
+    <!--app-->
+    <script src="App/app.js"></script>
+    <script src="App/app.routes.js"></script>
+
+    <!--controllers-->
+    <script src="App/Components/Makes/Controllers/makes.controller.js"></script>
+    <script src="App/Components/Models/Controllers/models.controller.js"></script>
+    <script src="App/Components/Makes/Modals/add-or-update-make-modal.controller.js"></script>
+    <script src="App/Components/Makes/Modals/delete-make-modal.ontroller.js"></script>
+
+    <!--services-->
+    <script src="App/Components/Makes/Services/makes-data.service.js"></script>
+    <script src="App/Components/Makes/Services/makes.modal.service.js"></script>
+    <script src="App/Components/Models/Services/models-data.service.js"></script>
+
+</body>
+</html>

@@ -30,7 +30,6 @@ namespace VehicleApp.Repository.Migrations
                     }
                     context.Models.AddOrUpdate(m => m.Name,
                     new VehicleModel { Name = "Model" + j.ToString(), VehicleMakeId = i, Abrv = "B" + j.ToString()});
-                    Console.WriteLine(i);
                 }
             };
 
