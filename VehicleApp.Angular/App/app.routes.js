@@ -11,7 +11,7 @@
         $stateProvider
             .state('Makes', {
                 url: '/Makes',
-                templateUrl: '/App/Views/makes.html',
+                templateUrl: '/App/Components/Makes/makes.html',
                 controller: 'MakesController',
                 resolve: {
                     makes: function (makesDataService) {
@@ -22,7 +22,7 @@
 
             .state('Models', {
                 url: '/Models/:id',
-                templateUrl: '/App/Views/models.html',
+                templateUrl: '/App/Components/Models/models.html',
                 controller: 'ModelsController',
                 resolve: {
                     models: function (ModelsDataService, $stateParams) {
@@ -32,7 +32,7 @@
             });
 
         $urlRouterProvider.otherwise('/Makes');
-        //// html5Mode doesn't work, tries to connect to server when url directly visited.
+        //// html5Mode currently doesn't work, connecting to server when url directly visited. Need to implement server redirect to index.
         //$locationProvider.html5Mode(true);
     };
 })();

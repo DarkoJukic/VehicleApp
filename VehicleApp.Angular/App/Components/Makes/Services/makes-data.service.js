@@ -21,7 +21,6 @@
         }
 
         function CreateMake(make) {
-            console.log("podaci koje saljem, " + make);
             var response = $resource('http://localhost:64802/api/makes').save(make);
             return response
         }

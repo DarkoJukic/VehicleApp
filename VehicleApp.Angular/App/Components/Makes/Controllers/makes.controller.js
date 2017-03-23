@@ -17,9 +17,7 @@
                 // if index is not sent in function AddOrUpdateMakeModal then it's new make. 
                 //After creating new make push it locally into makes list without refreshing page 
                 //if it is existing make, then edit existing make locally.
-                console.log(index);
                 if (index == undefined) {
-                    console.log("make" + JSON.stringify(make));
                     $scope.makes.push(make);
                 } else {
                     $scope.makes[index] = make;
