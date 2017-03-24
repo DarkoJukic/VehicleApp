@@ -9,7 +9,7 @@ using VehicleApp.Service.Model.Common;
 
 namespace VehicleApp.MVC.Controllers
 {
-    [EnableCorsAttribute("*", "*", "*")]
+    [EnableCors("*", "*", "*")]
     public class MakesController : ApiController
     {
         private readonly IVehicleMakeService service;
@@ -22,10 +22,10 @@ namespace VehicleApp.MVC.Controllers
         // GET: api/makes
         public async Task<IHttpActionResult> Get()
         {
-            // currently hardcoded
+            // currently hardcoded values for paging, filtering, sorting and ordering
             List<Repository.Models.VehicleMake> makes = await service.GetAllVehicleMakes(1, null, null, null);
 
-            List<IVehicleMake> mappedMakes= Mapper.Map<List<IVehicleMake>>(makes);
+            List<IVehicleMake> mappedMakes = Mapper.Map<List<IVehicleMake>>(makes);
 
             return Ok(mappedMakes);
         }
@@ -43,12 +43,6 @@ namespace VehicleApp.MVC.Controllers
 
             await service.CreateVehicleMake(mappedVehicle);
 
-            //if save is not successfull
-            if (mappedVehicle == null)
-            {
-                return Conflict();
-            }
-
             return Created(Request.RequestUri + mappedVehicle.ToString(), mappedVehicle);
         }
 
@@ -59,14 +53,16 @@ namespace VehicleApp.MVC.Controllers
             {
                 return BadRequest("Vehicle data not entered");
             }
-
+            // map to entity model
             var mappedVehicle = Mapper.Map<Repository.Models.VehicleMake>(vehicle);
+            // edit 
+            await service.EditVehicleMake(mappedVehicle);
 
             if (mappedVehicle == null)
             {
                 return NotFound();
             }
-            await service.EditVehicleMake(mappedVehicle);
+
             return Ok();
         }
 

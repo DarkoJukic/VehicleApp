@@ -5,8 +5,8 @@
 		.module('VehicleApp')
 		.factory('makesDataService', makesDataService);
 
-    makesDataService.$inject = ['$resource'];
-    function makesDataService($resource) {
+    makesDataService.$inject = ['$resource', 'appSettings'];
+    function makesDataService($resource, appSettings) {
         var service = {
             GetAllMakes: GetAllMakes,
             CreateMake: CreateMake,
@@ -17,70 +17,24 @@
         return service;
 
         function GetAllMakes() {
-            return $resource('http://localhost:64802/api/makes').query();
+            return $resource(  appSettings.apiServerPath + '/api/makes').query();
         }
 
         function CreateMake(make) {
-            var response = $resource('http://localhost:64802/api/makes').save(make);
+            var response = $resource(appSettings.apiServerPath + '/api/makes').save(make);
             return response
         }
 
         function EditMake(make, id) {
-            var response = $resource('http://localhost:64802/api/makes/:id', null, {
+            var response = $resource(appSettings.apiServerPath + '/api/makes/:id', null, {
                 'update': { method: 'PUT' }
             }).update({ id: id }, make);
             return response
         }
 
         function DeleteMake(id) {
-            var response = $resource('http://localhost:64802/api/makes/:id', { id: '@id' }).delete({ id: id });
+            var response = $resource(appSettings.apiServerPath + '/api/makes/:id', { id: '@id' }).delete({ id: id });
             return response
         }
     }
 })();
-
-
-
-
-//(function () {
-//    angular
-//        .module('VehicleApp')
-//        .service('MakesDataService', MakesDataService);
-
-//    MakesDataService.$inject = ['$http'];
-//    function MakesDataService($http) {
-//        var service = {
-//            GetMakes: GetMakes,
-//            AddMake: AddMake
-//        };
-//        return service;
-
-//        function GetMakes() {
-//            return $http.get('/api/Makes')
-//                .then(Success)
-//                .catch(Failed)
-
-//            function Success(response) {
-//                return response.data;
-//            }
-//            function Failed(error) {
-//                alert("Error")
-//            }
-//        }
-
-
-//        function AddMake(make) {
-//            return $http.post('/api/Makes', make)
-//                .then(Success)
-//                .catch(Failed)
-
-//            function Success(response) {
-//                return response.data;
-//            }
-//            function Failed(error) {
-//                alert("Error")
-//            }
-//        }
-
-//    }
-//})()

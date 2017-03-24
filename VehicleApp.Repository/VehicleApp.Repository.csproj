@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9020B697-B064-4426-9E8A-FB270C5F45D3}</ProjectGuid>
+    <ProjectGuid>{49DFCEA5-148B-4422-90B9-03DB20BE2563}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VehicleApp.Service</RootNamespace>
-    <AssemblyName>VehicleApp.Service</AssemblyName>
+    <RootNamespace>VehicleApp.Repository</RootNamespace>
+    <AssemblyName>VehicleApp.Repository</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=6.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.6.0.1\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -45,10 +41,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,31 +49,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="DAL\Entities\VehicleMake.cs" />
+    <Compile Include="DAL\Entities\VehicleModel.cs" />
+    <Compile Include="DAL\VehicleDbContext.cs" />
+    <Compile Include="Model.Common\IVehicleMake.cs" />
+    <Compile Include="Model.Common\IVehicleModel.cs" />
+    <Compile Include="Model\VehicleMake.cs" />
+    <Compile Include="Model\VehicleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service.Common\IVehicleModelService.cs" />
-    <Compile Include="Service.Common\IVehicleMakeService.cs" />
-    <Compile Include="Service\VehicleMakeService.cs" />
-    <Compile Include="Service\VehicleModelService.cs" />
-    <Compile Include="ViewModels\CreateVehicleMakeViewModel.cs" />
-    <Compile Include="ViewModels\CreateVehicleModelViewModel.cs" />
-    <Compile Include="ViewModels\ListVehicleMakeViewModel.cs" />
-    <Compile Include="ViewModels\ListVehicleModelViewModel.cs" />
+    <Compile Include="Repository.Common\IVehicleMakeRepository.cs" />
+    <Compile Include="Repository.Common\IVehicleModelRepository.cs" />
+    <Compile Include="Repository\VehicleMakeRepository.cs" />
+    <Compile Include="Repository\VehicleModelRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\VehicleApp.Repository\VehicleApp.Repository.csproj">
-      <Project>{49dfcea5-148b-4422-90b9-03db20be2563}</Project>
-      <Name>VehicleApp.Repository</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

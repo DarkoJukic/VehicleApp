@@ -32,6 +32,7 @@ namespace VehicleApp.Repository
                 case "NameDesc":
                     model.OrderByDescending(vehicle => vehicle.Name);
                     break;
+
                 case "Abrv":
                     model.OrderBy(vehicle => vehicle.Abrv);
                     break;
@@ -43,11 +44,12 @@ namespace VehicleApp.Repository
                 default:
                     model.OrderBy(vehicle => vehicle.Name);
                     break;
+
             }
             return await model.ToListAsync();
         }
 
-    public async Task<VehicleMake> Create(VehicleMake vehicleMake)
+    public async Task<VehicleMake> CreateAsync(VehicleMake vehicleMake)
         {
             context.Makes.Add(vehicleMake);
             await context.SaveChangesAsync();
@@ -58,7 +60,7 @@ namespace VehicleApp.Repository
         {
             return await context.Makes.FindAsync(Id);
         }
-        public async Task Edit(VehicleMake vehicleMake)
+        public async Task EditAsync(VehicleMake vehicleMake)
         {
             context.Entry(vehicleMake).State = EntityState.Modified;
             await context.SaveChangesAsync();
@@ -68,7 +70,7 @@ namespace VehicleApp.Repository
         {
             return await context.Makes.FindAsync(Id);
         }
-        public async Task DeleteConfirmed(int? Id)
+        public async Task DeleteAsync(int? Id)
         {
             VehicleMake vehicleMake = await context.Makes.FindAsync(Id);
             if (vehicleMake != null)
@@ -76,6 +78,11 @@ namespace VehicleApp.Repository
                 context.Makes.Remove(vehicleMake);
                 await context.SaveChangesAsync();
             }
+        }
+
+        public async Task SaveAsync()
+        {
+            await context.SaveChangesAsync();
         }
     }
 }

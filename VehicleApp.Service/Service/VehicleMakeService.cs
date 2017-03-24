@@ -21,17 +21,18 @@ namespace VehicleApp.Service
 
         public async Task<VehicleMake> CreateVehicleMake(VehicleMake vehicleMake)
         {
-            return await repository.Create(vehicleMake);
+            await repository.CreateAsync(vehicleMake);
+            return vehicleMake;
         }
 
         public async Task EditVehicleMake(VehicleMake vehicleMake)
         {
-            await repository.Edit(vehicleMake);
+            await repository.EditAsync(vehicleMake);
         }
 
         public async Task DeleteVehicleMakeConfirmed(int? Id)
         {
-            await repository.DeleteConfirmed(Id);
+            await repository.DeleteAsync(Id);
         }
     }
 }

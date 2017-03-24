@@ -5,8 +5,8 @@
 		.module('VehicleApp')
 		.factory('ModelsDataService', ModelsDataService);
 
-    ModelsDataService.$inject = ['$resource'];
-    function ModelsDataService($resource) {
+    ModelsDataService.$inject = ['$resource', 'appSettings'];
+    function ModelsDataService($resource, appSettings) {
         var service = {
             GetModelsByMakeId: GetModelsByMakeId
         };
@@ -14,7 +14,7 @@
         return service;
 
         function GetModelsByMakeId(id) {
-            return $resource('http://localhost:64802/api/models/:id', { id: "@id" }).query({ id: id });
+            return $resource( appSettings.apiServerPath + '/api/models/:id', { id: "@id" }).query({ id: id });
         }
     }
 })();

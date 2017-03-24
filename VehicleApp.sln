@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleApp.WebAPI", "Vehicl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleApp.Angular", "VehicleApp.Angular\VehicleApp.Angular.csproj", "{7F367870-3D9C-40EA-9134-4C071C8E1B0F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleApp.Repository", "VehicleApp.Repository\VehicleApp.Repository.csproj", "{49DFCEA5-148B-4422-90B9-03DB20BE2563}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7F367870-3D9C-40EA-9134-4C071C8E1B0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F367870-3D9C-40EA-9134-4C071C8E1B0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F367870-3D9C-40EA-9134-4C071C8E1B0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49DFCEA5-148B-4422-90B9-03DB20BE2563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49DFCEA5-148B-4422-90B9-03DB20BE2563}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49DFCEA5-148B-4422-90B9-03DB20BE2563}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49DFCEA5-148B-4422-90B9-03DB20BE2563}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

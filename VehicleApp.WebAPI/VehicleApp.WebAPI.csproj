@@ -245,6 +245,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VehicleApp.Repository\VehicleApp.Repository.csproj">
+      <Project>{49dfcea5-148b-4422-90b9-03db20be2563}</Project>
+      <Name>VehicleApp.Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VehicleApp.Service\VehicleApp.Service.csproj">
       <Project>{9020b697-b064-4426-9e8a-fb270c5f45d3}</Project>
       <Name>VehicleApp.Service</Name>
