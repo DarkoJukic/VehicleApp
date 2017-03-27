@@ -19,6 +19,7 @@ namespace VehicleApp.MVC.App_Start
     using WebApiContrib.IoC.Ninject;
     using Service.Service.Common;
     using Service.Service;
+    using Repository.Common;
 
     public static class NinjectWebCommon
     {
@@ -81,6 +82,8 @@ namespace VehicleApp.MVC.App_Start
             // vehicle models
             kernel.Bind<IVehicleModelService>().To<VehicleModelService>().InRequestScope();
             kernel.Bind<IVehicleModelRepository>().To<VehicleModelRepository>().InRequestScope();
+
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
         }
     }
 }

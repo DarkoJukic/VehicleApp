@@ -7,14 +7,12 @@ using VehicleApp.Repository.Models;
 
 namespace VehicleApp.Repository
 {
-    public class VehicleMakeRepository : IVehicleMakeRepository
+    public class VehicleMakeRepository : Repository<VehicleMake>, IVehicleMakeRepository
     {
-        private VehicleDbContext context;
-        public VehicleMakeRepository(VehicleDbContext context)
+        public VehicleMakeRepository(VehicleDbContext context) : base(context)
         {
-            this.context = context;
         }
-        public async Task<List<VehicleMake>> Get(int? page, string searchBy, string searchTerm, string sortOrder)
+        public async Task<IEnumerable<VehicleMake>> GetPage(int? page, string searchBy, string searchTerm, string sortOrder)
         {
             var model = context.Makes.AsQueryable();
 
@@ -48,41 +46,9 @@ namespace VehicleApp.Repository
             }
             return await model.ToListAsync();
         }
-
-    public async Task<VehicleMake> CreateAsync(VehicleMake vehicleMake)
+        public VehicleDbContext context
         {
-            context.Makes.Add(vehicleMake);
-            await context.SaveChangesAsync();
-            return vehicleMake;
-        }
-
-        public async Task<VehicleMake> Edit(int? Id)
-        {
-            return await context.Makes.FindAsync(Id);
-        }
-        public async Task EditAsync(VehicleMake vehicleMake)
-        {
-            context.Entry(vehicleMake).State = EntityState.Modified;
-            await context.SaveChangesAsync();
-        }
-
-        public async Task<VehicleMake> Delete(int? Id)
-        {
-            return await context.Makes.FindAsync(Id);
-        }
-        public async Task DeleteAsync(int? Id)
-        {
-            VehicleMake vehicleMake = await context.Makes.FindAsync(Id);
-            if (vehicleMake != null)
-            {
-                context.Makes.Remove(vehicleMake);
-                await context.SaveChangesAsync();
-            }
-        }
-
-        public async Task SaveAsync()
-        {
-            await context.SaveChangesAsync();
+            get { return base.Context as VehicleDbContext; }
         }
     }
 }

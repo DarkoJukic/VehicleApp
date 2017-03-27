@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using VehicleApp.Repository.Interfaces;
+using VehicleApp.Repository.Common;
 using VehicleApp.Repository.Models;
 using VehicleApp.Service.Common;
 
@@ -8,31 +8,38 @@ namespace VehicleApp.Service
 {
     public class VehicleMakeService : IVehicleMakeService
     {
-        private IVehicleMakeRepository repository;
-        public VehicleMakeService(IVehicleMakeRepository repository)
+        private IUnitOfWork unitOfWork;
+
+        public VehicleMakeService(IUnitOfWork unitOfWork)
         {
-            this.repository = repository;
+            this.unitOfWork = unitOfWork;
         }
 
-        public async Task<List<VehicleMake>> GetAllVehicleMakes(int? page, string searchBy, string searchTerm, string sortBy)
+        public async Task<IEnumerable<VehicleMake>> GetPage(int? page, string searchBy, string searchTerm, string sortBy)
         {
-            return await repository.Get(page, searchBy, searchTerm, sortBy);
+            return await unitOfWork.Makes.GetPage(page, searchBy, searchTerm, sortBy);
         }
 
-        public async Task<VehicleMake> CreateVehicleMake(VehicleMake vehicleMake)
+        public async Task<VehicleMake> CreateMake(VehicleMake vehicleMake)
         {
-            await repository.CreateAsync(vehicleMake);
+            unitOfWork.Makes.Add(vehicleMake);
+            await unitOfWork.SaveChangesAsync();
             return vehicleMake;
         }
 
-        public async Task EditVehicleMake(VehicleMake vehicleMake)
+        public async Task EditMake(VehicleMake vehicleMake)
         {
-            await repository.EditAsync(vehicleMake);
+            unitOfWork.Makes.Update(vehicleMake);
+            await unitOfWork.SaveChangesAsync();
         }
 
-        public async Task DeleteVehicleMakeConfirmed(int? Id)
+        public async Task DeleteMake(int Id)
         {
-            await repository.DeleteAsync(Id);
+            {
+                var vehicleToDelete = await unitOfWork.Makes.SingleOrDefaultAsync(r => r.Id == Id);
+                unitOfWork.Makes.Remove(vehicleToDelete);
+                await unitOfWork.SaveChangesAsync();
+            }
         }
     }
 }

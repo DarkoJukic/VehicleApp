@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VehicleApp.Repository.Models;
 
@@ -6,9 +7,9 @@ namespace VehicleApp.Service.Common
 {
     public interface IVehicleMakeService
     {
-        Task<List<VehicleMake>> GetAllVehicleMakes(int? page, string searchBy, string searchTerm, string sortBy);
-        Task<VehicleMake> CreateVehicleMake(VehicleMake vehicleMake);
-        Task EditVehicleMake(VehicleMake vehicleMake);
-        Task DeleteVehicleMakeConfirmed(int? Id);
+        Task<IEnumerable<VehicleMake>> GetPage(int? page, string searchBy, string searchTerm, string sortBy);
+        Task<VehicleMake> CreateMake(VehicleMake vehicleMake);
+        Task EditMake(VehicleMake vehicleMake);
+        Task DeleteMake(int Id);
     }
 }

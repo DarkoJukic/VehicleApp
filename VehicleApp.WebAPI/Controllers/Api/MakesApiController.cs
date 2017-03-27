@@ -5,7 +5,6 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using VehicleApp.Model;
 using VehicleApp.Service.Common;
-using VehicleApp.Service.Model.Common;
 
 namespace VehicleApp.MVC.Controllers
 {
@@ -23,42 +22,39 @@ namespace VehicleApp.MVC.Controllers
         public async Task<IHttpActionResult> Get()
         {
             // currently hardcoded values for paging, filtering, sorting and ordering
-            List<Repository.Models.VehicleMake> makes = await service.GetAllVehicleMakes(1, null, null, null);
-
-            List<IVehicleMake> mappedMakes = Mapper.Map<List<IVehicleMake>>(makes);
-
-            return Ok(mappedMakes);
+            IEnumerable<VehicleApp.Repository.Models.VehicleMake> makes = await service.GetPage(1, null, null, null);
+            return Ok(makes);
         }
 
-
-        // POST: api/makes
-        public async Task<IHttpActionResult> Post([FromBody]VehicleMake vehicle)
+        //POST: api/makes
+        public async Task<IHttpActionResult> Post([FromBody]VehicleMake make)
         {
-            if (vehicle == null)
+            if (make == null)
             {
                 return BadRequest("Vehicle data not entered");
             }
 
-            var mappedVehicle = Mapper.Map<Repository.Models.VehicleMake>(vehicle);
+            // map to entity model
+            var mappedMake = Mapper.Map<Repository.Models.VehicleMake>(make);
 
-            await service.CreateVehicleMake(mappedVehicle);
+            await service.CreateMake(mappedMake);
 
-            return Created(Request.RequestUri + mappedVehicle.ToString(), mappedVehicle);
+            return Created(Request.RequestUri + mappedMake.ToString(), mappedMake);
         }
 
         // PUT: api/makes/5
-        public async Task<IHttpActionResult> Put(int id, [FromBody]VehicleMake vehicle)
+        public async Task<IHttpActionResult> Put(int id, [FromBody]VehicleMake make)
         {
-            if (vehicle == null)
+            if (make == null)
             {
                 return BadRequest("Vehicle data not entered");
             }
             // map to entity model
-            var mappedVehicle = Mapper.Map<Repository.Models.VehicleMake>(vehicle);
+            var mappedMake = Mapper.Map<Repository.Models.VehicleMake>(make);
             // edit 
-            await service.EditVehicleMake(mappedVehicle);
+            await service.EditMake(mappedMake);
 
-            if (mappedVehicle == null)
+            if (mappedMake == null)
             {
                 return NotFound();
             }
@@ -66,10 +62,10 @@ namespace VehicleApp.MVC.Controllers
             return Ok();
         }
 
-        // DELETE: api/makes/5
+        //DELETE: api/makes/5
         public async Task<IHttpActionResult> Delete(int id)
         {
-            await service.DeleteVehicleMakeConfirmed(id);
+            await service.DeleteMake(id);
             return Ok();
         }
     }
