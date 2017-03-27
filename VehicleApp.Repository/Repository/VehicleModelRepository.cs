@@ -18,7 +18,7 @@ namespace VehicleApp.Repository
             //Need to implement paging and filtering in future
            var model = await context.Models.Where(vehicle => vehicle.VehicleMakeId == MakeId)
                .OrderBy(vehicle => vehicle.Name)
-               .Take(10).ToListAsync();
+               .Take(50).ToListAsync();
             return model;
         }
 

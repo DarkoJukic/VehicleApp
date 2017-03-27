@@ -22,7 +22,7 @@ namespace VehicleApp.MVC.Controllers
         public async Task<IHttpActionResult> Get()
         {
             // currently hardcoded values for paging, filtering, sorting and ordering
-            IEnumerable<VehicleApp.Repository.Models.VehicleMake> makes = await service.GetPage(1, null, null, null);
+            IEnumerable<Repository.Models.VehicleMake> makes = await service.GetPage(1, null, null, null);
             return Ok(makes);
         }
 
@@ -53,12 +53,6 @@ namespace VehicleApp.MVC.Controllers
             var mappedMake = Mapper.Map<Repository.Models.VehicleMake>(make);
             // edit 
             await service.EditMake(mappedMake);
-
-            if (mappedMake == null)
-            {
-                return NotFound();
-            }
-
             return Ok();
         }
 
