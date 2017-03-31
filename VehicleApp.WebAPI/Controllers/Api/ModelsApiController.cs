@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using VehicleApp.Model;
-using VehicleApp.Repository.Interfaces;
 using VehicleApp.Service.Service.Common;
 
 namespace VehicleApp.MVC.Controllers.Api
@@ -16,17 +15,17 @@ namespace VehicleApp.MVC.Controllers.Api
     public class ModelsController : ApiController
     {
 
-        private readonly IVehicleModelService service;
+        private readonly IVehicleModelService Service;
 
         public ModelsController(IVehicleModelService service)
         {
-            this.service = service;
+            this.Service = service;
         }
 
-        public async Task<IEnumerable<VehicleApp.Repository.Models.VehicleModel>> GetModelsByMakeId(int Id)
-        {
-            return await service.GetModelsByMakeId(Id);
-        }
+        //public async Task<IEnumerable<VehicleApp.Repository.Models.VehicleModel>> GetModelsByMakeId(int Id)
+        //{
+        //    return await Service.GetModelsByMakeId(Id);
+        //}
 
         public void Post([FromBody]string value)
         {

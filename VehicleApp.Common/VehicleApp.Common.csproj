@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{49DFCEA5-148B-4422-90B9-03DB20BE2563}</ProjectGuid>
+    <ProjectGuid>{4A334C41-67B7-4E06-9FF9-539C8F496FE3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VehicleApp.Repository</RootNamespace>
-    <AssemblyName>VehicleApp.Repository</AssemblyName>
+    <RootNamespace>VehicleApp.Common</RootNamespace>
+    <AssemblyName>VehicleApp.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,20 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,33 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Filters\MakesFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository.cs" />
-    <Compile Include="VehicleMakeRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\VehicleApp.DAL\VehicleApp.DAL.csproj">
-      <Project>{b5125d26-e815-4b58-afbd-59bebcd0473b}</Project>
-      <Name>VehicleApp.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VehicleApp.Model.Common\VehicleApp.Model.Common.csproj">
-      <Project>{6ac4296e-c882-4fc2-8e0d-21a39c275649}</Project>
-      <Name>VehicleApp.Model.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VehicleApp.Model\VehicleApp.Model.csproj">
-      <Project>{328df542-bc8a-4ad8-9574-3dced2f8fbde}</Project>
-      <Name>VehicleApp.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VehicleApp.Repository.Common\VehicleApp.Repository.Common.csproj">
-      <Project>{706a0608-6fa8-49e2-8948-df34847e8b6c}</Project>
-      <Name>VehicleApp.Repository.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

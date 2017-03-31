@@ -13,13 +13,14 @@ namespace VehicleApp.MVC.App_Start
     using Service.Common;
     using Service;
     using Repository;
-    using Repository.Interfaces;
-    using Repository.Models;
+
     using System.Web.Http;
     using WebApiContrib.IoC.Ninject;
     using Service.Service.Common;
     using Service.Service;
     using Repository.Common;
+    using Repository.Models;
+    using DAL;
 
     public static class NinjectWebCommon
     {
@@ -75,15 +76,20 @@ namespace VehicleApp.MVC.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             //vehicle makes
+
             kernel.Bind<IVehicleMakeService>().To<VehicleMakeService>().InRequestScope();
-            kernel.Bind<IVehicleMakeRepository>().To<VehicleMakeRepository>().InRequestScope();
+            //kernel.Bind<IVehicleMakeRepository>().To<VehicleMakeRepository>().InRequestScope();
+
+            //kernel.Bind<VehicleApp.Repository.Common.IRepository>().To<Repository>().InRequestScope();
+
+
             kernel.Bind<VehicleDbContext>().To<VehicleDbContext>().InRequestScope();
 
             // vehicle models
             kernel.Bind<IVehicleModelService>().To<VehicleModelService>().InRequestScope();
-            kernel.Bind<IVehicleModelRepository>().To<VehicleModelRepository>().InRequestScope();
+            //kernel.Bind<IVehicleModelRepository>().To<VehicleModelRepository>().InRequestScope();
 
-            kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
+            //kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
         }
     }
 }

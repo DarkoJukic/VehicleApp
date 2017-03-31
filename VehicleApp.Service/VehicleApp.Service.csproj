@@ -58,10 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service.Common\IVehicleModelService.cs" />
-    <Compile Include="Service.Common\IVehicleMakeService.cs" />
-    <Compile Include="Service\VehicleMakeService.cs" />
-    <Compile Include="Service\VehicleModelService.cs" />
+    <Compile Include="VehicleMakeService.cs" />
+    <Compile Include="VehicleModelService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -71,9 +69,29 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\VehicleApp.DAL\VehicleApp.DAL.csproj">
+      <Project>{b5125d26-e815-4b58-afbd-59bebcd0473b}</Project>
+      <Name>VehicleApp.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VehicleApp.Model.Common\VehicleApp.Model.Common.csproj">
+      <Project>{6ac4296e-c882-4fc2-8e0d-21a39c275649}</Project>
+      <Name>VehicleApp.Model.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VehicleApp.Model\VehicleApp.Model.csproj">
+      <Project>{328df542-bc8a-4ad8-9574-3dced2f8fbde}</Project>
+      <Name>VehicleApp.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VehicleApp.Repository.Common\VehicleApp.Repository.Common.csproj">
+      <Project>{706a0608-6fa8-49e2-8948-df34847e8b6c}</Project>
+      <Name>VehicleApp.Repository.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VehicleApp.Repository\VehicleApp.Repository.csproj">
       <Project>{49dfcea5-148b-4422-90b9-03db20be2563}</Project>
       <Name>VehicleApp.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VehicleApp.Service.Common\VehicleApp.Service.Common.csproj">
+      <Project>{bce8b06e-6837-409c-888a-c6dfacbfeecf}</Project>
+      <Name>VehicleApp.Service.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

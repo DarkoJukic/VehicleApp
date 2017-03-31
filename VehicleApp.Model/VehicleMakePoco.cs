@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using VehicleApp.Model;
+﻿using System.Collections.Generic;
+using VehicleApp.Model.Common;
 
-namespace VehicleApp.WebAPI.ViewModels
+namespace VehicleApp.Model
 {
-    public class VehicleMakeViewModel
+    public class VehicleMakePoco : IVehicleMake
     {
         public int Id { get; set; }
         public string Name { get; set; }

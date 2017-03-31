@@ -5,7 +5,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using VehicleApp.Model;
 using VehicleApp.Service.Common;
-using VehicleApp.Service.Model.Common;
+using VehicleApp.Model.Common;
 using VehicleApp.WebAPI.ViewModels;
 
 namespace VehicleApp.MVC.Controllers
@@ -36,9 +36,9 @@ namespace VehicleApp.MVC.Controllers
                 return BadRequest("Vehicle data not entered");
             }
 
-            await Service.CreateMake(Mapper.Map<IVehicleMake>(make));
+            var createdMakeWithId = await Service.CreateMake(Mapper.Map<IVehicleMake>(make));
 
-            return Created(Request.RequestUri + make.ToString(), make);
+            return Created(Request.RequestUri + make.ToString(), createdMakeWithId);
         }
 
         // PUT: api/makes/5
