@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using AutoMapper;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using VehicleApp.Repository.Interfaces;
 using VehicleApp.Repository.Models;
+using VehicleApp.Service.Model.Common;
 
 namespace VehicleApp.Repository
 {
@@ -12,7 +14,7 @@ namespace VehicleApp.Repository
         public VehicleMakeRepository(VehicleDbContext context) : base(context)
         {
         }
-        public async Task<IEnumerable<VehicleMake>> GetPage(int? page, string searchBy, string searchTerm, string sortOrder)
+        public async Task<IEnumerable<IVehicleMake>> GetPage(int? page, string searchBy, string searchTerm, string sortOrder)
         {
             var model = context.Makes.AsQueryable();
 
@@ -44,7 +46,8 @@ namespace VehicleApp.Repository
                     break;
 
             }
-            return await model.ToListAsync();
+            IEnumerable<VehicleMake> model2 = await model.ToListAsync();
+            return Mapper.Map<IEnumerable<IVehicleMake>>(model2);
         }
         public VehicleDbContext context
         {

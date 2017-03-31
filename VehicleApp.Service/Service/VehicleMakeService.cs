@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using AutoMapper;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VehicleApp.Repository.Common;
 using VehicleApp.Repository.Models;
 using VehicleApp.Service.Common;
+using VehicleApp.Service.Model.Common;
 
 namespace VehicleApp.Service
 {
@@ -15,21 +17,21 @@ namespace VehicleApp.Service
             this.unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<VehicleMake>> GetPage(int? page, string searchBy, string searchTerm, string sortBy)
+        public async Task<IEnumerable<IVehicleMake>> GetPage(int? page, string searchBy, string searchTerm, string sortBy)
         {
             return await unitOfWork.Makes.GetPage(page, searchBy, searchTerm, sortBy);
         }
 
-        public async Task<VehicleMake> CreateMake(VehicleMake vehicleMake)
+        public async Task<IVehicleMake> CreateMake(IVehicleMake make)
         {
-            unitOfWork.Makes.Add(vehicleMake);
+            unitOfWork.Makes.Add(Mapper.Map<VehicleMake>(make));
             await unitOfWork.SaveChangesAsync();
-            return vehicleMake;
+            return make;
         }
 
-        public async Task EditMake(VehicleMake vehicleMake)
+        public async Task EditMake(IVehicleMake vehicleMake)
         {
-            unitOfWork.Makes.Update(vehicleMake);
+            unitOfWork.Makes.Update(Mapper.Map<VehicleMake>(vehicleMake));
             await unitOfWork.SaveChangesAsync();
         }
 

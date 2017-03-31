@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using VehicleApp.Service.Model.Common;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-namespace VehicleApp.Model
+namespace VehicleApp.WebAPI.ViewModels
 {
-    public class VehicleModel : IVehicleModel
+    public class VehicleModelViewModel
     {
         public int Id { get; set; }
         public int VehicleMakeId { get; set; }
