@@ -12,14 +12,10 @@ namespace VehicleApp.MVC.App_Start
             AutoMapper.Mapper.Initialize(config =>
             {
                 // VehicleMake
-                config.CreateMap<VehicleMakePoco, IVehicleMake>().ReverseMap();
-                config.CreateMap<IVehicleMake, VehicleMakePoco>().ReverseMap();
                 config.CreateMap<IVehicleMake, VehicleMake>().ReverseMap();
-                config.CreateMap<VehicleMake, IVehicleMake>().ReverseMap();
-
-
+                config.CreateMap<VehicleMakePoco, IVehicleMake>().ReverseMap();
+                config.CreateMap<VehicleMakePoco, VehicleMake>().ReverseMap();
                 config.CreateMap<IVehicleMake, VehicleMakeViewModel>().ReverseMap();
-                config.CreateMap<VehicleMakeViewModel, IVehicleMake>().ReverseMap();
 
                 // VehicleModel
                 config.CreateMap<VehicleModelPoco, VehicleModelPoco>().ReverseMap();

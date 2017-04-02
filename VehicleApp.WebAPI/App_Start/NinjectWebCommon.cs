@@ -1,7 +1,7 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(VehicleApp.MVC.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(VehicleApp.MVC.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(VehicleApp.WebAPI.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(VehicleApp.WebAPI.App_Start.NinjectWebCommon), "Stop")]
 
-namespace VehicleApp.MVC.App_Start
+namespace VehicleApp.WebAPI.App_Start
 {
     using System;
     using System.Web;
@@ -10,32 +10,31 @@ namespace VehicleApp.MVC.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using Ninject.Web.WebApi;
+    using System.Web.Http;
+    using Repository;
+    using Repository.Models;
+    using Repository.Common;
     using Service.Common;
     using Service;
-    using Repository;
-
-    using System.Web.Http;
-    using WebApiContrib.IoC.Ninject;
     using Service.Service.Common;
     using Service.Service;
-    using Repository.Common;
-    using Repository.Models;
-    using DAL;
+    using Ninject.Extensions.Factory;
 
-    public static class NinjectWebCommon
+    public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start()
+        public static void Start() 
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-
+        
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -43,7 +42,7 @@ namespace VehicleApp.MVC.App_Start
         {
             bootstrapper.ShutDown();
         }
-
+        
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -57,9 +56,7 @@ namespace VehicleApp.MVC.App_Start
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
-
-                GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(kernel);
-
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
                 return kernel;
             }
             catch
@@ -75,21 +72,19 @@ namespace VehicleApp.MVC.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            //vehicle makes
-
-            kernel.Bind<IVehicleMakeService>().To<VehicleMakeService>().InRequestScope();
-            //kernel.Bind<IVehicleMakeRepository>().To<VehicleMakeRepository>().InRequestScope();
 
             //kernel.Bind<VehicleApp.Repository.Common.IRepository>().To<Repository>().InRequestScope();
 
-
-            kernel.Bind<VehicleDbContext>().To<VehicleDbContext>().InRequestScope();
+            kernel.Bind<VehicleMakeRepository>().To<VehicleMakeRepository>();
+            kernel.Bind<VehicleDbContext>().To<VehicleDbContext>();
+            kernel.Bind<Repository>().To<Repository>();
+            kernel.Bind<IUnitOfWorkFactory>().ToFactory();
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+            kernel.Bind<IVehicleMakeService>().To<VehicleMakeService>();
 
             // vehicle models
-            kernel.Bind<IVehicleModelService>().To<VehicleModelService>().InRequestScope();
+            kernel.Bind<IVehicleModelService>().To<VehicleModelService>();
             //kernel.Bind<IVehicleModelRepository>().To<VehicleModelRepository>().InRequestScope();
-
-            //kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
         }
     }
 }

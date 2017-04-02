@@ -11,6 +11,7 @@ using VehicleApp.Repository.Models;
 namespace VehicleApp.Repository
 {
     public class Repository
+
     {
         #region Properties
 
