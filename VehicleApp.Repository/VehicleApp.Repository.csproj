@@ -64,6 +64,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VehicleApp.Common\VehicleApp.Common.csproj">
+      <Project>{4a334c41-67b7-4e06-9ff9-539c8f496fe3}</Project>
+      <Name>VehicleApp.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VehicleApp.DAL\VehicleApp.DAL.csproj">
       <Project>{b5125d26-e815-4b58-afbd-59bebcd0473b}</Project>
       <Name>VehicleApp.DAL</Name>

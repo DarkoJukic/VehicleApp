@@ -15,7 +15,8 @@
                 controller: 'MakesController',
                 resolve: {
                     makes: function (makesDataService) {
-                        return makesDataService.GetAllMakes().$promise;
+                        //default parameters when page is loaded: searchTerm = "", page number = 1, page size= 5
+                        return makesDataService.GetAllMakes("",1,5).$promise;
                     }
                 }
             })

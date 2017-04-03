@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VehicleApp.Common\VehicleApp.Common.csproj">
+      <Project>{4a334c41-67b7-4e06-9ff9-539c8f496fe3}</Project>
+      <Name>VehicleApp.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VehicleApp.Model.Common\VehicleApp.Model.Common.csproj">
       <Project>{6ac4296e-c882-4fc2-8e0d-21a39c275649}</Project>
       <Name>VehicleApp.Model.Common</Name>

@@ -16,8 +16,8 @@
 
         return service;
 
-        function GetAllMakes() {
-            return $resource(  appSettings.apiServerPath + '/api/makes').query();
+        function GetAllMakes(searchTerm, pageNumber, pageSize) {
+            return $resource(appSettings.apiServerPath + '/api/makes', { searchTerm: searchTerm, pageNumber: pageNumber, pageSize: pageSize }).query();
         }
 
         function CreateMake(make) {

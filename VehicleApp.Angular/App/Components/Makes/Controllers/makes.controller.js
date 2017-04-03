@@ -5,8 +5,45 @@
         .module('VehicleApp')
         .controller('MakesController', MakesController);
 
-    MakesController.$inject = ['$scope',  'makesModalService', 'makes'];
-    function MakesController($scope, makesModalService, makes) {
+    MakesController.$inject = ['$scope', 'makesModalService', 'makesDataService', 'makes'];
+    function MakesController($scope, makesModalService, makesDataService, makes) {
+
+        $scope.state = {
+            searchTerm: "",
+            pageNumber: 1,
+            pageSize: 5
+        }
+
+        $scope.previous = function () {
+            $scope.state.pageNumber--;
+            if ($scope.state.pageNumber < 1)
+                $scope.state.pageNumber = 1;
+                makesDataService.GetAllMakes($scope.state.searchTerm, $scope.state.pageNumber, $scope.state.pageSize).$promise.then(
+                function (response) {
+                    console.log("response" + JSON.stringify(response));
+                    $scope.makes = response;
+                });
+        }
+
+        $scope.next = function () {
+            console.log("fucntion next called");
+            $scope.state.pageNumber++;
+
+            makesDataService.GetAllMakes($scope.state.searchTerm, $scope.state.pageNumber, $scope.state.pageSize).$promise.then(
+                function (response) {
+                    console.log("response" + JSON.stringify(response));
+                    if (response.length == 0) {
+                        $scope.state.pageNumber--;
+                        makesDataService.GetAllMakes($scope.state.searchTerm, $scope.state.pageNumber, $scope.state.pageSize).$promise.then(
+                            function (response) {
+                                console.log("response" + JSON.stringify(response));
+                                $scope.makes = response;
+                            });
+                    }
+                    $scope.makes = response;
+                });
+        };
+
 
         $scope.makes = makes;
         $scope.AddOrUpdateMakeModal = function (make, index) {

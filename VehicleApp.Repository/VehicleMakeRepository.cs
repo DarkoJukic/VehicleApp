@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using VehicleApp.Common.Filters;
 using VehicleApp.DAL;
 using VehicleApp.Model;
 using VehicleApp.Model.Common;
@@ -18,14 +19,38 @@ namespace VehicleApp.Repository
         {
             this.repository = repository;
         }
-        public async Task<IEnumerable<IVehicleMake>> GetPageAsync(int? page, string searchBy, string searchTerm, string sortOrder)
+        public async Task<IEnumerable<IVehicleMake>> GetPageAsync(IPagingFilter filter = null)
         {
-            var model = Mapper.Map<IEnumerable<VehicleMakePoco>>(
-                await repository.GetWhere<VehicleMake>()
-                .OrderBy(k => k.Name)
-                .ToListAsync());
-                return model;
+            if (filter != null)
+            {
+                var makes = Mapper.Map<IEnumerable<VehicleMakePoco>>(
+                    await repository.GetWhere<VehicleMake>()
+                    .OrderBy(k => k.Name)
+                    .Skip((filter.PageNumber - 1) * filter.PageSize)
+                    .Take(filter.PageSize)
+                    .ToListAsync());
+
+                if (!string.IsNullOrWhiteSpace(filter.SearchString))
+                {
+                    makes = makes.Where(k => k.Name.ToUpper()
+                        .Contains(filter.SearchString.ToUpper()))
+                        .ToList();
+                }
+
+                return makes;
+            }
+            else
+            {
+                return Mapper.Map<IEnumerable<VehicleMakePoco>>(await repository.GetWhere<VehicleMake>().ToListAsync());
+            }
+
+            //var model = Mapper.Map<IEnumerable<VehicleMakePoco>>(
+            //    await repository.GetWhere<VehicleMake>()
+            //    .OrderBy(k => k.Name)
+            //    .ToListAsync());
+            //    return model;
         }
+
 
         public async virtual Task<IVehicleMake> AddAsync(IVehicleMake make)
         {

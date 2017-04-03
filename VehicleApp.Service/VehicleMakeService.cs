@@ -7,6 +7,7 @@ using VehicleApp.Service.Common;
 using VehicleApp.Model.Common;
 using System;
 using VehicleApp.Repository;
+using VehicleApp.Common.Filters;
 
 namespace VehicleApp.Service
 {
@@ -19,9 +20,9 @@ namespace VehicleApp.Service
             this.repository = repository;
         }
 
-        public async Task<IEnumerable<IVehicleMake>> GetPage(int? page, string searchBy, string searchTerm, string sortBy)
+        public async Task<IEnumerable<IVehicleMake>> GetAsync(IPagingFilter filter = null)
         {
-            return await repository.GetPageAsync(page, searchBy, searchTerm, sortBy);
+            return await repository.GetPageAsync(filter);
             //return await unitOfWork.Makes.GetPage(page, searchBy, searchTerm, sortBy);
         }
 

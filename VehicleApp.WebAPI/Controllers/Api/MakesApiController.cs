@@ -7,6 +7,7 @@ using VehicleApp.Model;
 using VehicleApp.Service.Common;
 using VehicleApp.Model.Common;
 using VehicleApp.WebAPI.ViewModels;
+using VehicleApp.Common.Filters;
 
 namespace VehicleApp.MVC.Controllers
 {
@@ -21,12 +22,23 @@ namespace VehicleApp.MVC.Controllers
         }
 
         // GET: api/makes
-        public async Task<IHttpActionResult> Get()
+        public async Task<IHttpActionResult> Get(string searchTerm, int pageNumber = 1, int pageSize = 15)
         {
             // currently hardcoded values for paging, filtering, sorting and ordering
-            var makes =  Mapper.Map<IEnumerable<VehicleMakeViewModel>>(await Service.GetPage(1, null, null, null));           
+            var makes =  Mapper.Map<IEnumerable<VehicleMakeViewModel>>(await Service.GetAsync(new PagingFilter(searchTerm, pageNumber, pageSize)));           
             return Ok(makes);
         }
+
+        //public async Task<ActionResult> Index(string searchTerm, int pageNumber = 1, int pageSize = 15)
+        //{
+        //    var customers = Mapper.Map<IEnumerable<CustomerViewModel>>(
+        //        await Service.GetPage(new PagingFilter(searchTerm, pageNumber, pageSize)))
+        //        .ToPagedList(pageNumber, pageSize);
+
+        //    var customerPagedList = new StaticPagedList<CustomerViewModel>(customers, customers.GetMetaData());
+        //    return View(customerPagedList);
+        //}
+
 
         //POST: api/makes
         public async Task<IHttpActionResult> Post([FromBody]VehicleMakeViewModel make)
