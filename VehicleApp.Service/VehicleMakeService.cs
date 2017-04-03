@@ -28,11 +28,7 @@ namespace VehicleApp.Service
         public async Task<IVehicleMake> CreateMake(IVehicleMake make)
         {
 
-            await repository.AddAsync(Mapper.Map<IVehicleMake>(make));
-
-            //make = await repository.CreateAsync(make);
-            //repository.Create(Mapper.Map<IVehicleMake>(make));
-            //await repository.SaveChangesAsync();
+            make = await repository.AddAsync(Mapper.Map<IVehicleMake>(make));
             return make;
         }
 
@@ -40,22 +36,12 @@ namespace VehicleApp.Service
         {
 
             await repository.UpdateAsync(Mapper.Map<IVehicleMake>(make));
-
-            //await repository.EditAsync(make);
-            //repository.Makes.Update(Mapper.Map<IVehicleMake>(vehicleMake));
-            //await repository.SaveChangesAsync();
         }
 
         public async Task DeleteMake(int Id)
         {
             {
-
-                await repository.UpdateAsync(Mapper.Map<IVehicleMake>(Id));
-
-                //await repository.DeleteAsync(Id);
-                //var vehicleToDelete = await repository.Makes.SingleOrDefaultAsync(r => r.Id == Id);
-                //repository.Makes.Remove(vehicleToDelete);
-                //await repository.SaveChangesAsync();
+                await repository.DeleteAsync(Id);
             }
         }
     }

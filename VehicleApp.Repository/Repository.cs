@@ -59,7 +59,7 @@ namespace VehicleApp.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public virtual Task<T> GetByIDAsync<T>(Guid id) where T : class
+        public virtual Task<T> GetByIDAsync<T>(int id) where T : class
         {
             return DbContext.Set<T>().FindAsync(id);
         }
@@ -70,7 +70,7 @@ namespace VehicleApp.Repository
         /// <typeparam name="T"></typeparam>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public virtual async Task<int> AddAsync<T>(T entity) where T : class
+        public virtual async Task<T> AddAsync<T>(T entity) where T : class
         {
             DbEntityEntry dbEntityEntry = DbContext.Entry(entity);
             if (dbEntityEntry.State != EntityState.Detached)
@@ -81,7 +81,8 @@ namespace VehicleApp.Repository
             {
                 DbContext.Set<T>().Add(entity);
             }
-            return await DbContext.SaveChangesAsync();
+            await DbContext.SaveChangesAsync();
+            return entity;
         }
 
         /// <summary>
@@ -128,7 +129,7 @@ namespace VehicleApp.Repository
         /// <typeparam name="T"></typeparam>
         /// <param name="id"></param>
         /// <returns></returns>
-        public virtual async Task<int> DeleteAsync<T>(Guid id) where T : class
+        public virtual async Task<int> DeleteAsync<T>(int id) where T : class
         {
             var entity = await GetByIDAsync<T>(id);
             if (entity == null)
