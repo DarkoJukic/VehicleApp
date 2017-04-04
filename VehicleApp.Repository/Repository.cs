@@ -10,7 +10,7 @@ using VehicleApp.Repository.Models;
 
 namespace VehicleApp.Repository
 {
-    public class Repository
+    public class Repository : IRepository
 
     {
         #region Properties

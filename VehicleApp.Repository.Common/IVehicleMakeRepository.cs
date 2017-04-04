@@ -9,12 +9,8 @@ namespace VehicleApp.Repository.Common
     public interface IVehicleMakeRepository
     {
         Task<IEnumerable<IVehicleMake>> GetPageAsync(IPagingFilter filter);
-
-        //IVehicleMake Add(IVehicleMake vehicleMake);
-        //Task<IVehicleMake> Edit(int? Id);
-        //void EditAsync(IVehicleMake vehicleMake);
-        //Task<IVehicleMake> Delete(int? Id);
-        //Task DeleteAsync(int? Id);
-        //Task SaveAsync();
+        Task<IVehicleMake> AddAsync(IVehicleMake make);
+        Task<int> UpdateAsync(IVehicleMake make);
+        Task<int> DeleteAsync(int id);
     }
 }

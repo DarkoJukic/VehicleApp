@@ -13,36 +13,35 @@ namespace VehicleApp.Service
 {
     public class VehicleMakeService : IVehicleMakeService
     {
-        private VehicleMakeRepository repository;
+        private IVehicleMakeRepository Repository;
 
-        public VehicleMakeService(VehicleMakeRepository repository)
+        public VehicleMakeService(IVehicleMakeRepository repository)
         {
-            this.repository = repository;
+            this.Repository = repository;
         }
 
         public async Task<IEnumerable<IVehicleMake>> GetAsync(IPagingFilter filter = null)
         {
-            return await repository.GetPageAsync(filter);
-            //return await unitOfWork.Makes.GetPage(page, searchBy, searchTerm, sortBy);
+            return await Repository.GetPageAsync(filter);
         }
 
         public async Task<IVehicleMake> CreateMake(IVehicleMake make)
         {
 
-            make = await repository.AddAsync(Mapper.Map<IVehicleMake>(make));
+            make = await Repository.AddAsync(Mapper.Map<IVehicleMake>(make));
             return make;
         }
 
         public async Task EditMake(IVehicleMake make)
         {
 
-            await repository.UpdateAsync(Mapper.Map<IVehicleMake>(make));
+            await Repository.UpdateAsync(Mapper.Map<IVehicleMake>(make));
         }
 
         public async Task DeleteMake(int Id)
         {
             {
-                await repository.DeleteAsync(Id);
+                await Repository.DeleteAsync(Id);
             }
         }
     }

@@ -13,60 +13,53 @@ namespace VehicleApp.Repository
 {
     public class VehicleMakeRepository : IVehicleMakeRepository
     {
-        protected Repository repository { get; private set; }
+        protected IRepository Repository { get; private set; }
 
-        public VehicleMakeRepository(Repository repository)
+        public VehicleMakeRepository(IRepository repository)
         {
-            this.repository = repository;
+            this.Repository = repository;
         }
         public async Task<IEnumerable<IVehicleMake>> GetPageAsync(IPagingFilter filter = null)
         {
-            if (filter != null)
+            if (filter.SearchString != null)
             {
                 var makes = Mapper.Map<IEnumerable<VehicleMakePoco>>(
-                    await repository.GetWhere<VehicleMake>()
+                    await Repository.GetWhere<VehicleMake>()
+                    .Where(r => r.Name.ToUpper().Contains(filter.SearchString.ToUpper()))
                     .OrderBy(k => k.Name)
                     .Skip((filter.PageNumber - 1) * filter.PageSize)
                     .Take(filter.PageSize)
                     .ToListAsync());
-
-                if (!string.IsNullOrWhiteSpace(filter.SearchString))
-                {
-                    makes = makes.Where(k => k.Name.ToUpper()
-                        .Contains(filter.SearchString.ToUpper()))
-                        .ToList();
-                }
-
                 return makes;
             }
             else
             {
-                return Mapper.Map<IEnumerable<VehicleMakePoco>>(await repository.GetWhere<VehicleMake>().ToListAsync());
+                var makes = Mapper.Map<IEnumerable<VehicleMakePoco>>(
+                    await Repository.GetWhere<VehicleMake>()
+                    .OrderBy(k => k.Name)
+                    .Skip((filter.PageNumber - 1) * filter.PageSize)
+                    .Take(filter.PageSize)
+                    .ToListAsync());
+                return makes;
             }
-
-            //var model = Mapper.Map<IEnumerable<VehicleMakePoco>>(
-            //    await repository.GetWhere<VehicleMake>()
-            //    .OrderBy(k => k.Name)
-            //    .ToListAsync());
-            //    return model;
         }
 
 
         public async virtual Task<IVehicleMake> AddAsync(IVehicleMake make)
         {
             // make that is returned after creating.
-            var returnedMake = await repository.AddAsync(Mapper.Map<VehicleMake>(make));
+            var returnedMake = await Repository.AddAsync(Mapper.Map<VehicleMake>(make));
             return Mapper.Map<IVehicleMake>(returnedMake);
         }
 
         public async virtual Task<int> UpdateAsync(IVehicleMake make)
         {
-            return await repository.UpdateAsync(Mapper.Map<VehicleMake>(make));
+            return await Repository.UpdateAsync(Mapper.Map<VehicleMake>(make));
         }
 
         public async virtual Task<int> DeleteAsync(int id)
         {
-            return await repository.DeleteAsync<VehicleMake>(id);
+            return await Repository.DeleteAsync<VehicleMake>(id);
         }
     }
 }

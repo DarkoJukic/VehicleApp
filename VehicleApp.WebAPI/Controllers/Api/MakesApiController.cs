@@ -29,17 +29,6 @@ namespace VehicleApp.MVC.Controllers
             return Ok(makes);
         }
 
-        //public async Task<ActionResult> Index(string searchTerm, int pageNumber = 1, int pageSize = 15)
-        //{
-        //    var customers = Mapper.Map<IEnumerable<CustomerViewModel>>(
-        //        await Service.GetPage(new PagingFilter(searchTerm, pageNumber, pageSize)))
-        //        .ToPagedList(pageNumber, pageSize);
-
-        //    var customerPagedList = new StaticPagedList<CustomerViewModel>(customers, customers.GetMetaData());
-        //    return View(customerPagedList);
-        //}
-
-
         //POST: api/makes
         public async Task<IHttpActionResult> Post([FromBody]VehicleMakeViewModel make)
         {
@@ -50,7 +39,7 @@ namespace VehicleApp.MVC.Controllers
 
             var createdMakeWithId = await Service.CreateMake(Mapper.Map<IVehicleMake>(make));
 
-            return Created(Request.RequestUri + make.ToString(), createdMakeWithId);
+            return Created(Request.RequestUri + make.ToString(), Mapper.Map<VehicleMakeViewModel>(createdMakeWithId));
         }
 
         // PUT: api/makes/5

@@ -20,7 +20,7 @@
     </div>
     <br />
     <br />
-    <div ng-if="makes.length == 0"><h3>There are currently no makes added.</h3></div>
+    <div ng-if="makes.length == 0"><h3>No results</h3></div>
     <table class="table" ng-if="makes.length != 0">
         <tr>
             <th>
@@ -58,9 +58,10 @@
         </tr>
     </table>
     <nav>
-        <ul class="pager">
-            <li><a ng-click="previous()">Previous</a></li>
-            <li><a ng-click="next()">Next</a></li>
-        </ul>
+        <div class="pager">
+            <button  class="btn btn-primary" ng-disabled="state.firstPage" role="button" ng-click="previous()">Previous</button>
+            <button class="btn btn-primary active"  role="button" >{{state.pageNumber}}</button>
+            <button class="btn btn-primary" ng-disabled="state.lastPage" role="button" ng-click="next()">Next</button>
+        </div>
     </nav>
 </div>

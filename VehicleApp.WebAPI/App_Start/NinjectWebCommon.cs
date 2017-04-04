@@ -73,18 +73,17 @@ namespace VehicleApp.WebAPI.App_Start
         private static void RegisterServices(IKernel kernel)
         {
 
-            //kernel.Bind<VehicleApp.Repository.Common.IRepository>().To<Repository>().InRequestScope();
 
-            kernel.Bind<VehicleMakeRepository>().To<VehicleMakeRepository>();
+
+            kernel.Bind<IVehicleMakeService>().To<VehicleMakeService>();
+            kernel.Bind<IRepository>().To<Repository>();
+            kernel.Bind<IVehicleMakeRepository>().To<VehicleMakeRepository>();
             kernel.Bind<VehicleDbContext>().To<VehicleDbContext>();
-            kernel.Bind<Repository>().To<Repository>();
             kernel.Bind<IUnitOfWorkFactory>().ToFactory();
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
-            kernel.Bind<IVehicleMakeService>().To<VehicleMakeService>();
 
             // vehicle models
             kernel.Bind<IVehicleModelService>().To<VehicleModelService>();
-            //kernel.Bind<IVehicleModelRepository>().To<VehicleModelRepository>().InRequestScope();
         }
     }
 }

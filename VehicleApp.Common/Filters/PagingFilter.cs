@@ -36,7 +36,6 @@ namespace VehicleApp.Common.Filters
 
         #endregion Properties
 
-
         #region Variables
 
         public int DefaultPageSize = 15;

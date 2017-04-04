@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VehicleApp.Repository.Common
 {
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IRepository
     {
         #region Methods
 
@@ -24,7 +24,7 @@ namespace VehicleApp.Repository.Common
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>The entity.</returns>
-        Task<T> GetByIDAsync<T>(Guid id) where T : class;
+        Task<T> GetByIDAsync<T>(int id) where T : class;
 
         /// <summary>
         /// Creates an entity of the type T asynchronously.
@@ -32,7 +32,7 @@ namespace VehicleApp.Repository.Common
         /// <typeparam name="T"></typeparam>
         /// <param name="entity">The entity.</param>
         /// <returns></returns>
-        Task<int> AddAsync<T>(T entity) where T : class;
+        Task<T> AddAsync<T>(T entity) where T : class;
 
         /// <summary>
         /// Updates the entity asynchronously.
@@ -56,7 +56,7 @@ namespace VehicleApp.Repository.Common
         /// <typeparam name="T"></typeparam>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<int> DeleteAsync<T>(Guid id) where T : class;
+        Task<int> DeleteAsync<T>(int id) where T : class;
 
         /// <summary>
         /// Gets entities according to where clause that is passed in as a paramatar.
