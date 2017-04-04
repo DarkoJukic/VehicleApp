@@ -36,6 +36,15 @@
                 // if response.length is < than pageSize then it is last page. Disable next page button.
                 if (response.length < $scope.state.pageSize) {
                     $scope.state.lastPage = true;
+                    // if response.length is  0, then go to previous page and disable next page button since we are on last page.
+                    if (response.length == 0) {
+                        pageNumber--;
+                        $scope.state.lastPage = true;
+                        makesDataService.GetAllMakes(searchTerm, pageNumber, pageSize).$promise.then(
+                            function (response) {
+                                $scope.makes = response;
+                            });
+                    }
                 } else {
                     // if previous page button is pressed then it is not last page, enable next page button.
                     $scope.state.lastPage = false;
@@ -74,3 +83,26 @@
         };
     }
 })()
+
+//$scope.next = function () {
+//    $scope.state.pageNumber++;
+//    // if next page button is pressed then it is not first page, enable previous page button.
+//    $scope.state.firstPage = false;
+//    makesDataService.GetAllMakes($scope.state.searchTerm, $scope.state.pageNumber, $scope.state.pageSize).$promise.then(
+//        function (response) {
+//            // if response.length is < than pageSize then it is last page. Disable next page button.
+//            if (response.length < $scope.state.pageSize) {
+//                $scope.state.lastPage = true;
+//            }
+//            // if response.length is  0, then go to previous page and disable next page button since we are on last page.
+//            if (response.length == 0) {
+//                $scope.state.pageNumber--;
+//                $scope.state.lastPage = true;
+//                makesDataService.GetAllMakes($scope.state.searchTerm, $scope.state.pageNumber, $scope.state.pageSize).$promise.then(
+//                    function (response) {
+//                        $scope.makes = response;
+//                    });
+//            }
+//            $scope.makes = response;
+//        });
+//};
