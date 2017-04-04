@@ -64,10 +64,12 @@
             // after Make is created or edited change it locally, without need of refresh.
             modalInstance.result.then(function (make) {
                 // if index is not sent in function AddOrUpdateMakeModal then it's new make. 
-                //After creating new make push it locally into makes list without refreshing page 
+                //After creating new make get current page again to refresh the list
                 //if it is existing make, then edit existing make locally.
                 if (index == undefined) {
-                    $scope.makes.push(make);
+                    // After creating new make get current page again
+                    $scope.getPage($scope.state.searchTerm, $scope.state.pageNumber, $scope.state.pageSize)
+                    //$scope.makes.push(make);
                 } else {
                     $scope.makes[index] = make;
                 }
@@ -76,9 +78,9 @@
 
         $scope.DeleteMakeModal = function (make, index) {
             var modalInstance = makesModalService.DeleteMakeModal(make);
-            // after Make is deleted remove it locally, without need of refresh.
             modalInstance.result.then(function () {
-                $scope.makes.splice(index, 1);
+                //after Make is deleted get current page again to refresh the list
+                $scope.getPage($scope.state.searchTerm, $scope.state.pageNumber, $scope.state.pageSize)
             });
         };
     }
