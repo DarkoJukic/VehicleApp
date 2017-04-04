@@ -11,6 +11,5 @@ namespace VehicleApp.WebAPI.ViewModels
         public int Id { get; set; }
         public string Name { get; set; }
         public string Abrv { get; set; }
-        public ICollection<VehicleModelPoco> Models { get; set; }
     }
 }
