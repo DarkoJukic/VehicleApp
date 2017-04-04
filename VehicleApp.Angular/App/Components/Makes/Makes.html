@@ -11,7 +11,7 @@
             <form method="get" class="form-horizontal">
                 <div class="input-group">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit" ng-click="FilterMakes()">Search</button>
+                        <button class="btn btn-default" type="submit" ng-click="FilterMakes(state.searchTerm, 1, state.pageSize)">Search</button>
                         <input type="text" class="form-control" ng-model ="state.searchTerm" name="searchTerm" placeholder="Search by make">
                     </span>
                 </div>
@@ -59,9 +59,9 @@
     </table>
     <nav>
         <div class="pager">
-            <button  class="btn btn-primary" ng-disabled="state.firstPage" role="button" ng-click="previous()">Previous</button>
+            <button  class="btn btn-primary" ng-disabled="state.firstPage" role="button" ng-click="getPage(state.searchTerm, state.pageNumber = state.pageNumber-1, state.pageSize)">Previous</button>
             <button class="btn btn-primary active"  role="button" >{{state.pageNumber}}</button>
-            <button class="btn btn-primary" ng-disabled="state.lastPage" role="button" ng-click="next()">Next</button>
+            <button class="btn btn-primary" ng-disabled="state.lastPage" role="button" ng-click="getPage(state.searchTerm, state.pageNumber= state.pageNumber+1, state.pageSize)">Next</button>
         </div>
     </nav>
 </div>

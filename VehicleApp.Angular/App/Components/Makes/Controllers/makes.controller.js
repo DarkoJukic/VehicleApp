@@ -18,53 +18,36 @@
         //initially list of makes is obtained from resolve.
         $scope.makes = makes;
 
-        //get previous page
-        $scope.previous = function () {
-            $scope.state.pageNumber--;
-            if ($scope.state.pageNumber <= 1) {
-                $scope.state.pageNumber = 1;
-                // if first page then disable previous button($scope.state.firstPage is used in ng-disabled directive for previous button).
-                $scope.state.firstPage = true;
-            }
-            // if previous page button is pressed then it is not last page, enable next page button.
-            $scope.state.lastPage = false;
-            makesDataService.GetAllMakes($scope.state.searchTerm, $scope.state.pageNumber, $scope.state.pageSize).$promise.then(
+
+        //get page
+        $scope.getPage = function (searchTerm, pageNumber, pageSize) {
+            console.log("search term " + searchTerm, "page number " + pageNumber, "page size" + pageSize)
+            $scope.state.pageNumber = pageNumber;
+            makesDataService.GetAllMakes(searchTerm, pageNumber, pageSize).$promise.then(
             function (response) {
+                $scope.makes = response;
+                if ($scope.state.pageNumber <= 1) {
+                    $scope.state.pageNumber = 1;
+                    // if first page then disable button for previous page($scope.state.firstPage is used in ng-disabled directive for previous button).
+                    $scope.state.firstPage = true;
+                } else {
+                    $scope.state.firstPage = false;
+                }
                 // if response.length is < than pageSize then it is last page. Disable next page button.
                 if (response.length < $scope.state.pageSize) {
                     $scope.state.lastPage = true;
+                } else {
+                    // if previous page button is pressed then it is not last page, enable next page button.
+                    $scope.state.lastPage = false;
                 }
-                $scope.makes = response;
             });
         }
-        //get next page
-        $scope.next = function () {
-            $scope.state.pageNumber++;
-            // if next page button is pressed then it is not first page, enable previous page button.
-            $scope.state.firstPage = false;
-            makesDataService.GetAllMakes($scope.state.searchTerm, $scope.state.pageNumber, $scope.state.pageSize).$promise.then(
-                function (response) {
-                    // if response.length is < than pageSize then it is last page. Disable next page button.
-                    if (response.length < $scope.state.pageSize) {
-                        $scope.state.lastPage = true;
-                    }
-                    // if response.length is  0, then go to previous page and disable next page button since we are on last page.
-                    if (response.length == 0) {
-                        $scope.state.pageNumber--;
-                        $scope.state.lastPage = true;
-                        makesDataService.GetAllMakes($scope.state.searchTerm, $scope.state.pageNumber, $scope.state.pageSize).$promise.then(
-                            function (response) {
-                                $scope.makes = response;
-                            });
-                    }
-                    $scope.makes = response;
-                });
-        };
+
 
         // when button search is press, call function for getting first page with searchTerm
-        $scope.FilterMakes = function () {
-            $scope.state.pageNumber = 1;
-            $scope.previous();
+        $scope.FilterMakes = function (searchTerm, pageNumber, pageSize) {
+            pageNumber = 1;
+            $scope.getPage(searchTerm, pageNumber, pageSize);
         }
 
         $scope.AddOrUpdateMakeModal = function (make, index) {
