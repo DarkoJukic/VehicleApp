@@ -81,9 +81,9 @@ namespace VehicleApp.WebAPI.App_Start
             kernel.Bind<VehicleDbContext>().To<VehicleDbContext>();
             kernel.Bind<IUnitOfWorkFactory>().ToFactory();
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
-
             // vehicle models
             kernel.Bind<IVehicleModelService>().To<VehicleModelService>();
+            kernel.Bind<IVehicleModelRepository>().To<VehicleModelRepository>();
         }
     }
 }

@@ -9,6 +9,6 @@ namespace VehicleApp.Service.Service.Common
 {
     public interface IVehicleModelService
     {
-        //Task<IEnumerable<IVehicleModel>> GetModelsByMakeId(int Id);
+        Task<IEnumerable<IVehicleModel>> GetModelsByMakeId(int Id);
     }
 }

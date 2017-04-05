@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using VehicleApp.Model;
+using VehicleApp.Model.Common;
 
-//namespace VehicleApp.Repository.Common
-//{
-//    public interface IVehicleModelRepository : IRepository<VehicleModel>
-//    {
-//        Task<IEnumerable<VehicleModel>> GetByMakeId(int MakeId);
-//    }
-//}
+namespace VehicleApp.Repository.Common
+{
+    public interface IVehicleModelRepository
+    {
+        Task<IEnumerable<IVehicleModel>> GetByMakeId(int MakeId);
+    }
+}

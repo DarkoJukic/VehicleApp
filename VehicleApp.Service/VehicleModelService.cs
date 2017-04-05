@@ -1,9 +1,12 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VehicleApp.Common.Filters;
 using VehicleApp.Model;
+using VehicleApp.Model.Common;
 using VehicleApp.Repository.Common;
 using VehicleApp.Service.Service.Common;
 
@@ -11,14 +14,16 @@ namespace VehicleApp.Service.Service
 {
     public class VehicleModelService : IVehicleModelService
     {
-        private IUnitOfWork unitOfWork;
-        public VehicleModelService(IUnitOfWork unitOfWork)
+        private IVehicleModelRepository Repository;
+        public VehicleModelService(IVehicleModelRepository repository)
         {
-            this.unitOfWork = unitOfWork;
+            this.Repository = repository;
         }
-        //public async Task<IEnumerable<VehicleApp.Repository.Models.VehicleModel>> GetModelsByMakeId(int Id)
-        //{
-        //    return await unitOfWork.Models.GetByMakeId(Id);
-        //}
+
+        public async Task<IEnumerable<IVehicleModel>> GetModelsByMakeId(int Id)
+        {
+            var model = await Repository.GetByMakeId(Id);
+            return model;
+        }
     }
 }

@@ -18,7 +18,10 @@ namespace VehicleApp.MVC.App_Start
                 config.CreateMap<IVehicleMake, VehicleMakeViewModel>().ReverseMap();
 
                 // VehicleModel
+                config.CreateMap<IVehicleModel, VehicleModel>().ReverseMap();
+                config.CreateMap<IVehicleModel, VehicleModelViewModel>().ReverseMap();
                 config.CreateMap<VehicleModelPoco, VehicleModelPoco>().ReverseMap();
+
             });
         }
     }

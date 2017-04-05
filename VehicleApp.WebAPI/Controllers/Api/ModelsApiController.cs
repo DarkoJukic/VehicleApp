@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,7 +8,9 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using VehicleApp.Model;
+using VehicleApp.Model.Common;
 using VehicleApp.Service.Service.Common;
+using VehicleApp.WebAPI.ViewModels;
 
 namespace VehicleApp.MVC.Controllers.Api
 {
@@ -22,10 +25,11 @@ namespace VehicleApp.MVC.Controllers.Api
             this.Service = service;
         }
 
-        //public async Task<IEnumerable<VehicleApp.Repository.Models.VehicleModel>> GetModelsByMakeId(int Id)
-        //{
-        //    return await Service.GetModelsByMakeId(Id);
-        //}
+        public async Task<IHttpActionResult> GetModelsByMakeId(int Id)
+        {
+            var model = Mapper.Map<IEnumerable<VehicleModelViewModel>>(await Service.GetModelsByMakeId(Id));
+            return Ok(model);
+        }
 
         public void Post([FromBody]string value)
         {
