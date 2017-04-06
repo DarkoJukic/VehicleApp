@@ -14,7 +14,7 @@ using VehicleApp.WebAPI.ViewModels;
 
 namespace VehicleApp.MVC.Controllers.Api
 {
-    [EnableCorsAttribute("*", "*", "*")]
+    [EnableCors("*", "*", "*")]
     public class ModelsController : ApiController
     {
 
@@ -31,16 +31,36 @@ namespace VehicleApp.MVC.Controllers.Api
             return Ok(model);
         }
 
-        public void Post([FromBody]string value)
+
+        //POST: api/models
+        public async Task<IHttpActionResult> Post([FromBody]VehicleModelViewModel model)
         {
+            if (model == null)
+            {
+                return BadRequest("Vehicle data not entered");
+            }
+
+            var createdModelWithId = await Service.CreateModel(Mapper.Map<IVehicleModel>(model));
+
+            return Created(Request.RequestUri + model.ToString(), Mapper.Map<VehicleModelViewModel>(createdModelWithId));
         }
 
-        public void Put(int id, [FromBody]string value)
+        // PUT: api/models/:id
+        public async Task<IHttpActionResult> Put(int id, [FromBody]VehicleModelViewModel model)
         {
+            if (model == null)
+            {
+                return BadRequest("Vehicle data not entered");
+            }
+            await Service.EditModel(Mapper.Map<IVehicleModel>(model));
+            return Ok();
         }
 
-        public void Delete(int id)
+        //DELETE: api/models/:id
+        public async Task<IHttpActionResult> Delete(int id)
         {
+            await Service.DeleteModel(id);
+            return Ok();
         }
     }
 }

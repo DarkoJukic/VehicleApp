@@ -22,11 +22,25 @@ namespace VehicleApp.Repository
 
         public async Task<IEnumerable<IVehicleModel>> GetByMakeId(int MakeId)
         {
-            //
             var model = Repository.GetWhere<VehicleModel>()
                 .Where(s=> s.VehicleMakeId == MakeId).ToList();
 
             return Mapper.Map<IEnumerable<IVehicleModel>>(model);              
+        }
+        public async virtual Task<IVehicleModel> AddAsync(IVehicleModel model)
+        {
+            var returnedModel = await Repository.AddAsync(Mapper.Map<VehicleModel>(model));
+            return Mapper.Map<IVehicleModel>(returnedModel);
+        }
+
+        public async virtual Task<int> UpdateAsync(IVehicleModel model)
+        {
+            return await Repository.UpdateAsync(Mapper.Map<VehicleModel>(model));
+        }
+
+        public async virtual Task<int> DeleteAsync(int id)
+        {
+            return await Repository.DeleteAsync<VehicleModel>(id);
         }
     }
 }

@@ -25,5 +25,23 @@ namespace VehicleApp.Service.Service
             var model = await Repository.GetByMakeId(Id);
             return model;
         }
+
+        public async Task<IVehicleModel> CreateModel(IVehicleModel model)
+        {
+            model = await Repository.AddAsync(Mapper.Map<IVehicleModel>(model));
+            return model;
+        }
+
+        public async Task EditModel(IVehicleModel model)
+        {
+            await Repository.UpdateAsync(Mapper.Map<IVehicleModel>(model));
+        }
+
+        public async Task DeleteModel(int Id)
+        {
+            {
+                await Repository.DeleteAsync(Id);
+            }
+        }
     }
 }

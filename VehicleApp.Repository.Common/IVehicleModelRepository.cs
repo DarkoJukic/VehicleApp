@@ -8,5 +8,8 @@ namespace VehicleApp.Repository.Common
     public interface IVehicleModelRepository
     {
         Task<IEnumerable<IVehicleModel>> GetByMakeId(int MakeId);
+        Task<IVehicleModel> AddAsync(IVehicleModel model);
+        Task<int> UpdateAsync(IVehicleModel model);
+        Task<int> DeleteAsync(int id);
     }
 }

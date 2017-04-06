@@ -42,7 +42,7 @@ namespace VehicleApp.MVC.Controllers
             return Created(Request.RequestUri + make.ToString(), Mapper.Map<VehicleMakeViewModel>(createdMakeWithId));
         }
 
-        // PUT: api/makes/5
+        // PUT: api/makes/:id
         public async Task<IHttpActionResult> Put(int id, [FromBody]VehicleMakeViewModel make)
         {
             if (make == null)
@@ -53,7 +53,7 @@ namespace VehicleApp.MVC.Controllers
             return Ok();
         }
 
-        //DELETE: api/makes/5
+        //DELETE: api/makes/:id
         public async Task<IHttpActionResult> Delete(int id)
         {
             await Service.DeleteMake(id);

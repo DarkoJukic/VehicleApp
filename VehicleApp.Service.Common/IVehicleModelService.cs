@@ -10,5 +10,8 @@ namespace VehicleApp.Service.Service.Common
     public interface IVehicleModelService
     {
         Task<IEnumerable<IVehicleModel>> GetModelsByMakeId(int Id);
+        Task<IVehicleModel> CreateModel(IVehicleModel model);
+        Task EditModel(IVehicleModel model);
+        Task DeleteModel(int Id);
     }
 }

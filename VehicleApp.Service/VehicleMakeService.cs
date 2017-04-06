@@ -27,14 +27,12 @@ namespace VehicleApp.Service
 
         public async Task<IVehicleMake> CreateMake(IVehicleMake make)
         {
-
             make = await Repository.AddAsync(Mapper.Map<IVehicleMake>(make));
             return make;
         }
 
         public async Task EditMake(IVehicleMake make)
         {
-
             await Repository.UpdateAsync(Mapper.Map<IVehicleMake>(make));
         }
 

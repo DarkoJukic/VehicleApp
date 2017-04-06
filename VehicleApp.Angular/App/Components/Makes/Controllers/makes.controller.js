@@ -52,7 +52,6 @@
             });
         }
 
-
         // when button search is press, call function for getting first page with searchTerm
         $scope.FilterMakes = function (searchTerm, pageNumber, pageSize) {
             pageNumber = 1;

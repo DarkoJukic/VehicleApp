@@ -66,6 +66,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\Components\Models\Modals\add-or-update-model-modal.controller.js" />
+    <Content Include="App\Components\Models\Modals\add-or-update-model-modal.html" />
+    <Content Include="App\Components\Models\Modals\delete-model-modal.controller.js" />
+    <Content Include="App\Components\Models\Modals\delete-model-modal.html" />
+    <Content Include="App\Components\Models\Services\models-modal-service.js" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\site.css" />
     <Content Include="Assets\css\toastr.min.css" />

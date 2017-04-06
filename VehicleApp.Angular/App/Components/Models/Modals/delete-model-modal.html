@@ -1,0 +1,16 @@
+﻿<div class="modal-content row">
+    <div class="modal-body">
+        <div>
+            <h4><strong>Delete vehicle model</strong></h4>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12">
+                    Are you sure you want to delete {{model.name}}?
+                </div>
+            </div>
+            <hr>
+            <button type="submit" class="btn btn-primary" ng-click="DeleteModel(model.id)">Delete</button>
+            <button type="button" class="btn btn-danger" ng-click="cancel()">Cancel</button>
+        </div>
+    </div>
+</div>
